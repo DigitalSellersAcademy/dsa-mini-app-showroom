@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore 1,000 practical Mini Apps from Digital Sellers Academy across business, marketing, productivity, finance, wellness and more.">
+  <meta name="theme-color" content="#071a2f">
+  <link rel="preload" as="image" href="DSA-logo-transparent-600x400.png">
+  <title>1,000 Mini Apps | Digital Sellers Academy</title>
+  <style>
+    :root {
+      --navy: #071a2f;
+      --navy-2: #0d2b49;
+      --navy-3: #153c60;
+      --orange: #e86703;
+      --orange-2: #ff8b2b;
+      --cream: #fff9f3;
+      --paper: #ffffff;
+      --ink: #10263b;
+      --muted: #617184;
+      --line: #dde5ec;
+      --soft: #f3f6f9;
+      --shadow: 0 24px 70px rgba(7, 26, 47, .13);
+      --shadow-sm: 0 12px 32px rgba(7, 26, 47, .09);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    .shell { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(7, 26, 47, .94);
+      backdrop-filter: blur(16px);
+    }
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 12px; color: #fff; }
+    .brand-logo {
+      width: 62px;
+      height: 46px;
+      flex: 0 0 auto;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 7px 14px rgba(0, 0, 0, .18));
+    }
+    .brand-copy { display: grid; line-height: 1.05; }
+    .brand-copy strong { font-size: 14px; letter-spacing: .11em; }
+    .brand-copy span { margin-top: 5px; color: #aec2d5; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 28px; color: #d9e4ed; font-size: 14px; font-weight: 700; }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      padding: 12px 18px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--navy) !important;
+      box-shadow: 0 10px 24px rgba(0,0,0,.12);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 700px;
+      padding: 92px 0 78px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(232, 103, 3, .20), transparent 25%),
+        radial-gradient(circle at 12% 80%, rgba(39, 94, 139, .42), transparent 31%),
+        linear-gradient(135deg, #061729 0%, #0a2440 58%, #0c3152 100%);
+    }
+    .hero::before, .hero::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::before { width: 500px; height: 500px; right: -220px; top: -250px; }
+    .hero::after { width: 340px; height: 340px; right: -120px; top: -170px; }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(400px, .95fr);
+      align-items: center;
+      gap: 64px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 20px;
+      color: #ffd5b2;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 32px; height: 2px; background: var(--orange); }
+    .hero h1 {
+      margin: 0;
+      max-width: 760px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(52px, 6.3vw, 86px);
+      font-weight: 700;
+      line-height: .95;
+      letter-spacing: -.055em;
+    }
+    .hero h1 span { display: block; color: var(--orange-2); }
+    .hero-lead {
+      max-width: 640px;
+      margin: 26px 0 32px;
+      color: #cad8e5;
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.65;
+    }
+    .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
+    .btn {
+      min-height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 22px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 850;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--orange); color: #fff; box-shadow: 0 14px 30px rgba(232, 103, 3, .32); }
+    .btn-primary:hover { background: #f47513; box-shadow: 0 18px 36px rgba(232, 103, 3, .4); }
+    .btn-ghost { border-color: rgba(255,255,255,.22); color: #fff; background: rgba(255,255,255,.06); }
+    .arrow { font-size: 18px; line-height: 1; }
+    .trust-row { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 30px; color: #aebfd0; font-size: 13px; font-weight: 700; }
+    .trust-row span { display: inline-flex; align-items: center; gap: 8px; }
+    .trust-row i { width: 19px; height: 19px; display: grid; place-items: center; border-radius: 50%; background: rgba(232,103,3,.18); color: #ffad6e; font-style: normal; }
+
+    .app-window {
+      position: relative;
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 28px;
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 38px 90px rgba(0,0,0,.28);
+      backdrop-filter: blur(14px);
+      transform: rotate(1.5deg);
+    }
+    .app-window::before {
+      content: "1,000";
+      position: absolute;
+      top: -34px;
+      right: -24px;
+      z-index: 2;
+      width: 96px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: 7px solid var(--navy-2);
+      border-radius: 50%;
+      color: #fff;
+      background: var(--orange);
+      font-family: Georgia, serif;
+      font-size: 25px;
+      font-weight: 800;
+      box-shadow: 0 16px 32px rgba(0,0,0,.24);
+    }
+    .window-inner { overflow: hidden; border-radius: 18px; background: #f7f9fb; color: var(--ink); }
+    .window-bar { display: flex; align-items: center; gap: 7px; padding: 14px 18px; background: #fff; border-bottom: 1px solid var(--line); }
+    .window-dot { width: 8px; aspect-ratio: 1; border-radius: 50%; background: #d6dde4; }
+    .window-dot:first-child { background: var(--orange); }
+    .window-label { margin-left: auto; color: #8493a2; font-size: 10px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .window-content { padding: 26px; }
+    .window-kicker { color: var(--orange); font-size: 10px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+    .window-title { margin: 8px 0 16px; font-family: Georgia, serif; font-size: 25px; letter-spacing: -.025em; }
+    .window-search { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border: 1px solid #dfe6ec; border-radius: 12px; background: #fff; color: #81909e; font-size: 12px; box-shadow: 0 7px 20px rgba(7,26,47,.06); }
+    .magnify { width: 14px; height: 14px; border: 2px solid #718293; border-radius: 50%; position: relative; }
+    .magnify::after { content: ""; width: 6px; height: 2px; position: absolute; right: -5px; bottom: -2px; transform: rotate(45deg); background: #718293; border-radius: 2px; }
+    .mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 17px; }
+    .mini-card { min-height: 96px; padding: 14px; border: 1px solid #e3e9ee; border-radius: 14px; background: #fff; box-shadow: 0 6px 18px rgba(7,26,47,.05); }
+    .mini-icon { width: 29px; height: 29px; display: grid; place-items: center; border-radius: 9px; color: var(--orange); background: #fff1e5; font-size: 10px; font-weight: 900; }
+    .mini-card strong { display: block; margin-top: 10px; font-size: 11px; line-height: 1.3; }
+    .mini-card span { color: #8b99a6; font-size: 9px; }
+    .floating-note {
+      position: absolute;
+      left: -42px;
+      bottom: -26px;
+      padding: 14px 18px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 15px;
+      color: #fff;
+      background: rgba(13,43,73,.95);
+      box-shadow: 0 18px 42px rgba(0,0,0,.22);
+      font-size: 12px;
+      font-weight: 800;
+      transform: rotate(-3deg);
+    }
+    .floating-note b { color: #ffad6e; }
+
+    .search-section { position: relative; z-index: 4; margin-top: -48px; }
+    .search-panel {
+      position: relative;
+      padding: 25px;
+      border: 1px solid rgba(7,26,47,.08);
+      border-radius: 25px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .search-copy { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-bottom: 15px; }
+    .search-copy strong { font-family: Georgia, serif; font-size: 22px; }
+    .search-copy span { color: var(--muted); font-size: 13px; }
+    .search-box { position: relative; display: flex; align-items: center; }
+    .search-box .magnify { position: absolute; left: 19px; z-index: 2; border-color: var(--navy-3); }
+    #app-search {
+      width: 100%;
+      min-height: 64px;
+      padding: 0 148px 0 54px;
+      border: 2px solid #e2e8ee;
+      border-radius: 16px;
+      outline: none;
+      color: var(--ink);
+      background: #f9fbfc;
+      font-size: 16px;
+      transition: border .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    #app-search:focus { border-color: var(--orange); background: #fff; box-shadow: 0 0 0 5px rgba(232,103,3,.10); }
+    .search-status {
+      position: absolute;
+      right: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--navy-2);
+      background: #eaf0f5;
+      font-size: 11px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+    .search-results {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      top: calc(100% - 12px);
+      left: 25px;
+      right: 25px;
+      max-height: 430px;
+      overflow: auto;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 24px 60px rgba(7,26,47,.18);
+    }
+    .search-results.open { display: block; }
+    .result-link { display: grid; grid-template-columns: 42px minmax(0, 1fr) auto; align-items: center; gap: 13px; padding: 12px; border-radius: 12px; }
+    .result-link:hover, .result-link:focus { outline: none; background: #f5f8fa; }
+    .result-badge { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; color: var(--orange); background: #fff0e4; font-size: 11px; font-weight: 900; }
+    .result-copy { min-width: 0; }
+    .result-copy strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; }
+    .result-copy small { color: var(--muted); font-size: 11px; }
+    .result-open { color: var(--orange); font-size: 12px; font-weight: 850; }
+    .empty-result { padding: 28px 18px; text-align: center; color: var(--muted); }
+
+    .section { padding: 100px 0; }
+    .section-soft { background: var(--soft); }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 40px; }
+    .section-head .eyebrow { margin-bottom: 13px; color: var(--orange); }
+    .section-head h2 { margin: 0; font-family: Georgia, serif; font-size: clamp(36px, 4vw, 54px); line-height: 1.05; letter-spacing: -.04em; }
+    .section-head p { max-width: 470px; margin: 0; color: var(--muted); line-height: 1.7; }
+
+    .featured-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .app-card {
+      position: relative;
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      transition: transform .22s ease, box-shadow .22s ease, border .22s ease;
+    }
+    .app-card:hover { transform: translateY(-6px); border-color: #f4b27f; box-shadow: 0 20px 46px rgba(7,26,47,.14); }
+    .app-card::after { content: ""; position: absolute; width: 110px; height: 110px; right: -50px; bottom: -50px; border-radius: 50%; background: #fff2e7; }
+    .card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .card-icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 14px; color: #fff; background: linear-gradient(145deg, var(--navy-3), var(--navy)); font-size: 12px; font-weight: 900; box-shadow: 0 10px 20px rgba(7,26,47,.15); }
+    .card-tag { padding: 7px 9px; border-radius: 999px; color: #a74700; background: #fff0e4; font-size: 9px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+    .app-card h3 { margin: 24px 0 10px; font-family: Georgia, serif; font-size: 22px; line-height: 1.17; letter-spacing: -.025em; }
+    .app-card p { margin: 0 0 22px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+    .card-link { position: relative; z-index: 1; margin-top: auto; color: var(--orange); font-size: 13px; font-weight: 900; }
+
+    .categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .category-card {
+      min-height: 146px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      border: 1px solid #dbe4eb;
+      border-radius: 18px;
+      background: #fff;
+      transition: transform .2s ease, border .2s ease, box-shadow .2s ease;
+    }
+    .category-card:hover { transform: translateY(-4px); border-color: #f1a56a; box-shadow: var(--shadow-sm); }
+    .category-card.active { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(232,103,3,.12), var(--shadow-sm); }
+    .category-top { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+    .category-num { color: var(--orange); font-family: Georgia, serif; font-size: 16px; font-weight: 800; }
+    .category-count { padding: 6px 8px; border-radius: 999px; color: var(--muted); background: var(--soft); font-size: 9px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .category-card strong { max-width: 190px; font-size: 15px; line-height: 1.28; }
+    .category-card .go { align-self: flex-end; color: var(--orange); font-weight: 900; }
+    .category-explorer {
+      display: none;
+      margin-top: 34px;
+      padding: 34px;
+      border: 1px solid #dbe4eb;
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      scroll-margin-top: 96px;
+    }
+    .category-explorer.open { display: block; }
+    .category-explorer-head { display: flex; align-items: start; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
+    .category-explorer-head h3 { margin: 5px 0 7px; font-family: Georgia, serif; font-size: clamp(28px, 4vw, 40px); letter-spacing: -.035em; }
+    .category-explorer-head p { margin: 0; color: var(--muted); }
+    .category-explorer-actions { display: flex; align-items: center; flex: 0 0 auto; gap: 12px; }
+    .category-buy { display: none; white-space: nowrap; }
+    .category-buy.visible { display: inline-flex; }
+    .category-close { width: 40px; height: 40px; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 50%; color: var(--navy); background: var(--soft); font-size: 20px; line-height: 1; }
+    .category-close:hover { border-color: #f1a56a; background: #fff0e4; }
+    .category-apps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .category-app-item { display: flex; align-items: center; gap: 13px; min-height: 82px; padding: 14px; border: 1px solid #e1e8ee; border-radius: 14px; background: #fbfcfd; transition: transform .18s ease, border .18s ease, background .18s ease; }
+    .category-app-item:hover { transform: translateY(-2px); border-color: #f1a56a; background: #fff; }
+    .category-app-num { width: 38px; height: 38px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 11px; color: var(--orange); background: #fff0e4; font-size: 11px; font-weight: 900; }
+    .category-app-copy { min-width: 0; }
+    .category-app-copy strong { display: block; font-size: 13px; line-height: 1.3; }
+    .category-app-copy small { display: block; margin-top: 5px; color: var(--orange); font-size: 10px; font-weight: 850; }
+
+    .discover {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 52px;
+      padding: 52px;
+      border-radius: 30px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 86% 22%, rgba(232,103,3,.24), transparent 26%),
+        linear-gradient(135deg, var(--navy), var(--navy-2));
+      box-shadow: var(--shadow);
+    }
+    .discover h2 { margin: 0 0 16px; font-family: Georgia, serif; font-size: clamp(34px, 4vw, 50px); line-height: 1.05; letter-spacing: -.035em; }
+    .discover p { margin: 0; color: #c5d4e0; line-height: 1.75; }
+    .discover-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 12px; }
+    #surprise-button { border: 0; }
+
+    .footer { padding: 52px 0 32px; color: #bac8d5; background: #051421; }
+    .footer-grid { display: flex; align-items: start; justify-content: space-between; gap: 32px; padding-bottom: 34px; border-bottom: 1px solid rgba(255,255,255,.09); }
+    .footer .brand { color: #fff; }
+    .footer-note { max-width: 420px; margin-top: 16px; color: #8fa3b5; font-size: 13px; line-height: 1.7; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 24px; color: #dbe6ef; font-size: 13px; font-weight: 750; }
+    .copyright { display: flex; justify-content: space-between; gap: 20px; padding-top: 26px; color: #738a9e; font-size: 11px; }
+
+    .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    @media (max-width: 1040px) {
+      .hero-grid { grid-template-columns: 1fr 420px; gap: 38px; }
+      .featured-grid, .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .category-apps-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 820px) {
+      .shell { width: min(100% - 28px, 680px); }
+      .nav { min-height: 68px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .brand-copy strong { font-size: 12px; }
+      .brand-logo { width: 56px; height: 42px; }
+      .hero { padding: 70px 0 90px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 70px; }
+      .hero h1 { max-width: 650px; }
+      .app-window { width: min(100%, 520px); margin-inline: auto; transform: rotate(.5deg); }
+      .floating-note { left: 10px; }
+      .search-copy { align-items: flex-start; flex-direction: column; gap: 5px; }
+      .section { padding: 80px 0; }
+      .section-head { align-items: flex-start; flex-direction: column; }
+      .discover { grid-template-columns: 1fr; padding: 38px; gap: 28px; }
+      .discover-actions { justify-content: flex-start; }
+    }
+    @media (max-width: 560px) {
+      .shell { width: min(100% - 22px, 480px); }
+      .brand-copy span { display: none; }
+      .brand-logo { width: 50px; height: 38px; }
+      .nav-cta { padding: 10px 13px; font-size: 12px; }
+      .hero { min-height: auto; padding-top: 56px; }
+      .hero h1 { font-size: 51px; }
+      .hero-lead { font-size: 16px; }
+      .hero-actions .btn { width: 100%; }
+      .trust-row { gap: 10px 16px; }
+      .app-window::before { width: 76px; top: -28px; right: -10px; border-width: 5px; font-size: 20px; }
+      .window-content { padding: 20px; }
+      .floating-note { display: none; }
+      .search-section { margin-top: -46px; }
+      .search-panel { padding: 17px; border-radius: 20px; }
+      #app-search { padding-right: 18px; font-size: 14px; }
+      .search-status { display: none; }
+      .search-results { left: 17px; right: 17px; }
+      .featured-grid, .categories-grid { grid-template-columns: 1fr; }
+      .app-card { min-height: 220px; }
+      .category-card { min-height: 128px; }
+      .category-explorer { padding: 24px 18px; }
+      .category-explorer-head { flex-direction: column; gap: 18px; }
+      .category-explorer-actions { width: 100%; justify-content: space-between; }
+      .category-buy { flex: 1; }
+      .category-apps-grid { grid-template-columns: 1fr; }
+      .discover { padding: 29px 23px; }
+      .discover-actions .btn { width: 100%; }
+      .footer-grid, .copyright { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="Digital Sellers Academy App Library home">
+        <img class="brand-logo" src="DSA-logo-transparent-600x400.png" width="600" height="400" alt="">
+        <span class="brand-copy"><strong>DIGITAL SELLERS ACADEMY</strong><span>Mini App Library</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#featured">Featured</a>
+        <a href="#categories">Categories</a>
+        <a class="nav-cta" href="#categories">Browse All Apps</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <div class="eyebrow">Your complete digital toolkit</div>
+          <h1>1,000 <span>MINI APPS</span></h1>
+          <p class="hero-lead">Turn ideas into action faster with practical tools for business, marketing, content, productivity, money, wellness and everyday life—all in one organized library.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#app-finder">Find the Right App <span class="arrow">→</span></a>
+            <a class="btn btn-ghost" href="#categories">Explore All 1,000</a>
+          </div>
+          <div class="trust-row" aria-label="Library highlights">
+            <span><i>✓</i> 20 categories</span>
+            <span><i>✓</i> 50 apps each</span>
+            <span><i>✓</i> Instant access</span>
+          </div>
+        </div>
+
+        <div class="app-window" aria-hidden="true">
+          <div class="window-inner">
+            <div class="window-bar">
+              <span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span>
+              <span class="window-label">DSA App Library</span>
+            </div>
+            <div class="window-content">
+              <div class="window-kicker">Find your next tool</div>
+              <div class="window-title">What do you want to accomplish?</div>
+              <div class="window-search"><span class="magnify"></span> Search profit, content, pricing...</div>
+              <div class="mini-grid">
+                <div class="mini-card"><span class="mini-icon">BUS</span><strong>Business Idea Validator</strong><span>Business</span></div>
+                <div class="mini-card"><span class="mini-icon">AI</span><strong>AI Prompt Builder</strong><span>AI Tools</span></div>
+                <div class="mini-card"><span class="mini-icon">FIN</span><strong>Profit Calculator</strong><span>Finance</span></div>
+                <div class="mini-card"><span class="mini-icon">SOC</span><strong>Content Planner</strong><span>Social Media</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="floating-note"><b>20 categories</b> · One powerful library</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="search-section" id="app-finder" aria-labelledby="search-heading">
+      <div class="shell">
+        <div class="search-panel">
+          <div class="search-copy">
+            <strong id="search-heading">Search the entire library</strong>
+            <span>Type what you need and open the right Mini App in seconds.</span>
+          </div>
+          <div class="search-box">
+            <span class="magnify" aria-hidden="true"></span>
+            <label class="sr-only" for="app-search">Search all 1,000 Mini Apps</label>
+            <input id="app-search" type="search" placeholder="Try “profit”, “Instagram”, “pricing” or “planner”..." autocomplete="off" aria-controls="search-results" aria-expanded="false">
+            <span class="search-status" id="library-status">Loading 1,000 apps…</span>
+          </div>
+          <div class="search-results" id="search-results" role="region" aria-live="polite" aria-label="App search results"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="featured">
+      <div class="shell">
+        <div class="section-head">
+          <div><div class="eyebrow">Start here</div><h2>Featured Mini Apps</h2></div>
+          <p>Popular starting points for planning, creating, pricing and growing your digital business.</p>
+        </div>
+        <div class="featured-grid">
+          <a class="app-card" href="https://digitalsellersacademy.com/products/50-business-mini-apps-commercial-resale-rights"><div class="card-top"><span class="card-icon">BIZ</span><span class="card-tag">Featured</span></div><h3>Business Idea Validator</h3><p>Pressure-test a business concept before investing your time and money.</p><span class="card-link">View 50-App Collection →</span></a>
+          <a class="app-card" href="https://digitalsellersacademy.com/products/50-ai-tools-prompts-mini-apps-commercial-resale-rights"><div class="card-top"><span class="card-icon">AI</span><span class="card-tag">Featured</span></div><h3>AI Business Idea Generator</h3><p>Discover focused business ideas shaped around your skills and interests.</p><span class="card-link">View 50-App Collection →</span></a>
+          <a class="app-card" href="https://digitalsellersacademy.com/products/50-business-mini-apps-commercial-resale-rights"><div class="card-top"><span class="card-icon">FIN</span><span class="card-tag">Featured</span></div><h3>Profit Margin Calculator</h3><p>See what you truly earn and make smarter pricing decisions with clarity.</p><span class="card-link">View 50-App Collection →</span></a>
+          <a class="app-card" href="https://digitalsellersacademy.com/products/50-content-creation-mini-apps-commercial-resale-rights"><div class="card-top"><span class="card-icon">CON</span><span class="card-tag">Featured</span></div><h3>Content Calendar Builder</h3><p>Turn scattered ideas into a practical, consistent publishing plan.</p><span class="card-link">View 50-App Collection →</span></a>
+          <a class="app-card" href="https://digitalsellersacademy.com/products/50-digital-product-mini-apps-commercial-resale-rights"><div class="card-top"><span class="card-icon">DPI</span><span class="card-tag">Recommended</span></div><h3>Digital Product Idea Generator</h3><p>Find sellable product ideas that fit your audience and expertise.</p><span class="card-link">View 50-App Collection →</span></a>
+          <a class="app-card" href="https://digitalsellersacademy.com/products/50-business-mini-apps-commercial-resale-rights"><div class="card-top"><span class="card-icon">REV</span><span class="card-tag">Recommended</span></div><h3>Revenue Goal Calculator</h3><p>Translate your income target into a clear number of sales and customers.</p><span class="card-link">View 50-App Collection →</span></a>
+          <a class="app-card" href="https://digitalsellersacademy.com/products/50-content-creation-mini-apps-commercial-resale-rights"><div class="card-top"><span class="card-icon">30D</span><span class="card-tag">Recommended</span></div><h3>30 Day Post Idea Creator</h3><p>Build a full month of content ideas without staring at a blank screen.</p><span class="card-link">View 50-App Collection →</span></a>
+          <a class="app-card" href="https://digitalsellersacademy.com/products/50-business-mini-apps-commercial-resale-rights"><div class="card-top"><span class="card-icon">GO</span><span class="card-tag">Recommended</span></div><h3>Launch Countdown Timer</h3><p>Keep your launch visible, focused and moving toward the big day.</p><span class="card-link">View 50-App Collection →</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="categories">
+      <div class="shell">
+        <div class="section-head">
+          <div><div class="eyebrow">Explore your way</div><h2>Browse by Category</h2></div>
+          <p>Every category contains 50 focused tools, so it is easy to go straight to the outcome you want.</p>
+        </div>
+        <div class="categories-grid">
+          <a class="category-card" href="#category-apps" data-category="Business &amp; Entrepreneurship"><span class="category-top"><span class="category-num">01</span><span class="category-count">50 apps</span></span><strong>Business &amp; Entrepreneurship</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Digital Products &amp; Passive Income"><span class="category-top"><span class="category-num">02</span><span class="category-count">50 apps</span></span><strong>Digital Products &amp; Passive Income</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Productivity"><span class="category-top"><span class="category-num">03</span><span class="category-count">50 apps</span></span><strong>Productivity</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Content Creation"><span class="category-top"><span class="category-num">04</span><span class="category-count">50 apps</span></span><strong>Content Creation</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="AI Tools &amp; Prompts"><span class="category-top"><span class="category-num">05</span><span class="category-count">50 apps</span></span><strong>AI Tools &amp; Prompts</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Social Media Growth"><span class="category-top"><span class="category-num">06</span><span class="category-count">50 apps</span></span><strong>Social Media Growth</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Email Marketing"><span class="category-top"><span class="category-num">07</span><span class="category-count">50 apps</span></span><strong>Email Marketing</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Mindset &amp; Personal Development"><span class="category-top"><span class="category-num">08</span><span class="category-count">50 apps</span></span><strong>Mindset &amp; Personal Development</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Finance &amp; Money"><span class="category-top"><span class="category-num">09</span><span class="category-count">50 apps</span></span><strong>Finance &amp; Money</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Health &amp; Wellness"><span class="category-top"><span class="category-num">10</span><span class="category-count">50 apps</span></span><strong>Health &amp; Wellness</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Relationships &amp; Family"><span class="category-top"><span class="category-num">11</span><span class="category-count">50 apps</span></span><strong>Relationships &amp; Family</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Education &amp; Learning"><span class="category-top"><span class="category-num">12</span><span class="category-count">50 apps</span></span><strong>Education &amp; Learning</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Travel &amp; Lifestyle"><span class="category-top"><span class="category-num">13</span><span class="category-count">50 apps</span></span><strong>Travel &amp; Lifestyle</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Food &amp; Nutrition"><span class="category-top"><span class="category-num">14</span><span class="category-count">50 apps</span></span><strong>Food &amp; Nutrition</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Home &amp; Organisation"><span class="category-top"><span class="category-num">15</span><span class="category-count">50 apps</span></span><strong>Home &amp; Organisation</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Career &amp; Job Search"><span class="category-top"><span class="category-num">16</span><span class="category-count">50 apps</span></span><strong>Career &amp; Job Search</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Coaching &amp; Service Providers"><span class="category-top"><span class="category-num">17</span><span class="category-count">50 apps</span></span><strong>Coaching &amp; Service Providers</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Spirituality &amp; Mindfulness"><span class="category-top"><span class="category-num">18</span><span class="category-count">50 apps</span></span><strong>Spirituality &amp; Mindfulness</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Kids &amp; Parenting"><span class="category-top"><span class="category-num">19</span><span class="category-count">50 apps</span></span><strong>Kids &amp; Parenting</strong><span class="go">→</span></a>
+          <a class="category-card" href="#category-apps" data-category="Creative Arts &amp; Hobbies"><span class="category-top"><span class="category-num">20</span><span class="category-count">50 apps</span></span><strong>Creative Arts &amp; Hobbies</strong><span class="go">→</span></a>
+        </div>
+        <div class="category-explorer" id="category-apps" aria-live="polite">
+          <div class="category-explorer-head">
+            <div><div class="eyebrow">50 Mini Apps</div><h3 id="category-title">Category apps</h3><p id="category-description">Preview the Mini Apps included in this collection.</p></div>
+            <div class="category-explorer-actions">
+              <a class="btn btn-primary category-buy" id="category-buy" href="#">Get This 50-App Collection <span class="arrow">→</span></a>
+              <button class="category-close" id="category-close" type="button" aria-label="Close category apps">×</button>
+            </div>
+          </div>
+          <div class="category-apps-grid" id="category-apps-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell discover">
+        <div><h2>Not sure where to begin?</h2><p>Let the library choose a Mini App for you, or open the complete directory to explore all 1,000 tools at your own pace.</p></div>
+        <div class="discover-actions">
+          <button class="btn btn-primary" id="surprise-button" type="button">Surprise Me <span class="arrow">→</span></button>
+          <a class="btn btn-ghost" href="#categories">Browse Categories</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#top"><img class="brand-logo" src="DSA-logo-transparent-600x400.png" width="600" height="400" alt=""><span class="brand-copy"><strong>DIGITAL SELLERS ACADEMY</strong><span>Mini App Library</span></span></a>
+          <div class="footer-note">Practical tools designed to help digital sellers create, organize, market and grow with greater confidence.</div>
+        </div>
+        <div class="footer-links"><a href="#app-finder">Search</a><a href="#featured">Featured</a><a href="#categories">Categories</a><a href="#categories">All Apps</a></div>
+      </div>
+      <div class="copyright"><span>© <span id="year"></span> Digital Sellers Academy. All rights reserved.</span><span>1,000 Mini Apps · 20 Categories</span></div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const searchInput = document.getElementById('app-search');
+      const resultsPanel = document.getElementById('search-results');
+      const status = document.getElementById('library-status');
+      const surpriseButton = document.getElementById('surprise-button');
+      const categoryCards = [...document.querySelectorAll('.category-card[data-category]')];
+      const categoryExplorer = document.getElementById('category-apps');
+      const categoryTitle = document.getElementById('category-title');
+      const categoryDescription = document.getElementById('category-description');
+      const categoryBuy = document.getElementById('category-buy');
+      const categoryGrid = document.getElementById('category-apps-grid');
+      const categoryClose = document.getElementById('category-close');
+      const year = document.getElementById('year');
+      const apps = [{"name":"Mini App Sales Launcher","category":"Business & Entrepreneurship"},{"name":"Revenue Goal Calculator","category":"Business & Entrepreneurship"},{"name":"Monthly Income Tracker","category":"Business & Entrepreneurship"},{"name":"Launch Countdown Timer","category":"Business & Entrepreneurship"},{"name":"Client Onboarding Checklist","category":"Business & Entrepreneurship"},{"name":"Proposal Value Calculator","category":"Business & Entrepreneurship"},{"name":"Business Idea Validator","category":"Business & Entrepreneurship"},{"name":"Niche Clarity Tool","category":"Business & Entrepreneurship"},{"name":"Offer Pricing Calculator","category":"Business & Entrepreneurship"},{"name":"Sales Conversion Tracker","category":"Business & Entrepreneurship"},{"name":"Lead Pipeline Manager","category":"Business & Entrepreneurship"},{"name":"Weekly Revenue Dashboard","category":"Business & Entrepreneurship"},{"name":"Business Model Checker","category":"Business & Entrepreneurship"},{"name":"Competitor Analysis Tool","category":"Business & Entrepreneurship"},{"name":"Brand Voice Generator","category":"Business & Entrepreneurship"},{"name":"Mission Statement Builder","category":"Business & Entrepreneurship"},{"name":"Vision Board Prompt Tool","category":"Business & Entrepreneurship"},{"name":"90 Day Business Planner","category":"Business & Entrepreneurship"},{"name":"Cash Flow Calculator","category":"Business & Entrepreneurship"},{"name":"Profit Margin Calculator","category":"Business & Entrepreneurship"},{"name":"Business Expense Tracker","category":"Business & Entrepreneurship"},{"name":"Invoice Generator","category":"Business & Entrepreneurship"},{"name":"Client Satisfaction Tracker","category":"Business & Entrepreneurship"},{"name":"Referral Tracker","category":"Business & Entrepreneurship"},{"name":"Business Goal Setter","category":"Business & Entrepreneurship"},{"name":"Launch Checklist Tool","category":"Business & Entrepreneurship"},{"name":"Product Idea Generator","category":"Business & Entrepreneurship"},{"name":"Market Research Tool","category":"Business & Entrepreneurship"},{"name":"Customer Avatar Builder","category":"Business & Entrepreneurship"},{"name":"Business Name Generator","category":"Business & Entrepreneurship"},{"name":"Tagline Creator","category":"Business & Entrepreneurship"},{"name":"Elevator Pitch Builder","category":"Business & Entrepreneurship"},{"name":"Business Health Checker","category":"Business & Entrepreneurship"},{"name":"KPI Dashboard","category":"Business & Entrepreneurship"},{"name":"Quarterly Business Review","category":"Business & Entrepreneurship"},{"name":"Annual Revenue Planner","category":"Business & Entrepreneurship"},{"name":"Side Hustle Income Tracker","category":"Business & Entrepreneurship"},{"name":"Freelance Rate Calculator","category":"Business & Entrepreneurship"},{"name":"Project Scope Estimator","category":"Business & Entrepreneurship"},{"name":"Client Budget Qualifier","category":"Business & Entrepreneurship"},{"name":"Discovery Call Prep Tool","category":"Business & Entrepreneurship"},{"name":"Proposal Win Rate Tracker","category":"Business & Entrepreneurship"},{"name":"Business Pivot Planner","category":"Business & Entrepreneurship"},{"name":"Minimum Viable Product Planner","category":"Business & Entrepreneurship"},{"name":"Beta Launch Tracker","category":"Business & Entrepreneurship"},{"name":"Testimonial Request Generator","category":"Business & Entrepreneurship"},{"name":"Customer Lifetime Value Calculator","category":"Business & Entrepreneurship"},{"name":"Email List Growth Tracker","category":"Business & Entrepreneurship"},{"name":"Community Growth Dashboard","category":"Business & Entrepreneurship"},{"name":"Business Exit Readiness Checker","category":"Business & Entrepreneurship"},{"name":"Digital Product Idea Generator","category":"Digital Products & Passive Income"},{"name":"Product Pricing Sweet Spot Calculator","category":"Digital Products & Passive Income"},{"name":"Passive Income Goal Tracker","category":"Digital Products & Passive Income"},{"name":"Beacons Store Optimisation Checklist","category":"Digital Products & Passive Income"},{"name":"Product Launch Countdown","category":"Digital Products & Passive Income"},{"name":"Sales Page Conversion Checker","category":"Digital Products & Passive Income"},{"name":"Digital Product Profit Calculator","category":"Digital Products & Passive Income"},{"name":"Bundle Builder Tool","category":"Digital Products & Passive Income"},{"name":"Product Suite Planner","category":"Digital Products & Passive Income"},{"name":"Affiliate Income Tracker","category":"Digital Products & Passive Income"},{"name":"MRR Revenue Calculator","category":"Digital Products & Passive Income"},{"name":"Product Validation Checklist","category":"Digital Products & Passive Income"},{"name":"Niche Product Finder","category":"Digital Products & Passive Income"},{"name":"Digital Product Name Generator","category":"Digital Products & Passive Income"},{"name":"Cover Image Brief Generator","category":"Digital Products & Passive Income"},{"name":"Product Description Builder","category":"Digital Products & Passive Income"},{"name":"Upsell Sequence Planner","category":"Digital Products & Passive Income"},{"name":"Order Bump Revenue Calculator","category":"Digital Products & Passive Income"},{"name":"Launch Revenue Projector","category":"Digital Products & Passive Income"},{"name":"Email List Monetisation Calculator","category":"Digital Products & Passive Income"},{"name":"Digital Product Roadmap Builder","category":"Digital Products & Passive Income"},{"name":"Course Outline Generator","category":"Digital Products & Passive Income"},{"name":"Ebook Chapter Planner","category":"Digital Products & Passive Income"},{"name":"Template Pack Builder","category":"Digital Products & Passive Income"},{"name":"Swipe File Organiser","category":"Digital Products & Passive Income"},{"name":"Prompt Pack Creator","category":"Digital Products & Passive Income"},{"name":"Workbook Section Planner","category":"Digital Products & Passive Income"},{"name":"Checklist Builder Tool","category":"Digital Products & Passive Income"},{"name":"Mini Course Planner","category":"Digital Products & Passive Income"},{"name":"Masterclass Outline Tool","category":"Digital Products & Passive Income"},{"name":"Workshop Agenda Builder","category":"Digital Products & Passive Income"},{"name":"Webinar Script Planner","category":"Digital Products & Passive Income"},{"name":"Challenge Design Tool","category":"Digital Products & Passive Income"},{"name":"Membership Tier Planner","category":"Digital Products & Passive Income"},{"name":"Community Monetisation Calculator","category":"Digital Products & Passive Income"},{"name":"Content to Product Converter","category":"Digital Products & Passive Income"},{"name":"Repurposing Planner","category":"Digital Products & Passive Income"},{"name":"Product Feedback Collector","category":"Digital Products & Passive Income"},{"name":"Student Success Tracker","category":"Digital Products & Passive Income"},{"name":"Testimonial Generator","category":"Digital Products & Passive Income"},{"name":"Social Proof Dashboard","category":"Digital Products & Passive Income"},{"name":"Launch Debrief Tool","category":"Digital Products & Passive Income"},{"name":"Revenue Per Product Tracker","category":"Digital Products & Passive Income"},{"name":"Best Seller Identifier","category":"Digital Products & Passive Income"},{"name":"Product Retirement Planner","category":"Digital Products & Passive Income"},{"name":"Seasonal Launch Calendar","category":"Digital Products & Passive Income"},{"name":"Flash Sale Calculator","category":"Digital Products & Passive Income"},{"name":"Bundle Discount Calculator","category":"Digital Products & Passive Income"},{"name":"Affiliate Programme Planner","category":"Digital Products & Passive Income"},{"name":"Digital Product Empire Roadmap","category":"Digital Products & Passive Income"},{"name":"Daily Task Prioritiser","category":"Productivity"},{"name":"Focus Session Timer","category":"Productivity"},{"name":"Weekly Goal Tracker","category":"Productivity"},{"name":"Morning Routine Builder","category":"Productivity"},{"name":"Evening Wind Down Planner","category":"Productivity"},{"name":"Deep Work Session Tracker","category":"Productivity"},{"name":"Distraction Log Tool","category":"Productivity"},{"name":"Energy Level Tracker","category":"Productivity"},{"name":"Daily Intention Setter","category":"Productivity"},{"name":"Time Block Planner","category":"Productivity"},{"name":"Habit Streak Counter","category":"Productivity"},{"name":"Weekly Review Generator","category":"Productivity"},{"name":"Monthly Progress Tracker","category":"Productivity"},{"name":"Project Milestone Tracker","category":"Productivity"},{"name":"Daily Wins Journal","category":"Productivity"},{"name":"Brain Dump Tool","category":"Productivity"},{"name":"Decision Making Matrix","category":"Productivity"},{"name":"Priority Score Calculator","category":"Productivity"},{"name":"Task Batch Organiser","category":"Productivity"},{"name":"Deadline Countdown Timer","category":"Productivity"},{"name":"Meeting Prep Checklist","category":"Productivity"},{"name":"End Of Day Review Tool","category":"Productivity"},{"name":"Weekly Planning Dashboard","category":"Productivity"},{"name":"Quarterly Goal Setter","category":"Productivity"},{"name":"Annual Review Generator","category":"Productivity"},{"name":"Procrastination Buster Tool","category":"Productivity"},{"name":"Focus Music Selector","category":"Productivity"},{"name":"Pomodoro Session Planner","category":"Productivity"},{"name":"Daily Schedule Builder","category":"Productivity"},{"name":"Time Audit Tracker","category":"Productivity"},{"name":"Productivity Score Calculator","category":"Productivity"},{"name":"Overwhelm Reset Tool","category":"Productivity"},{"name":"Next Action Identifier","category":"Productivity"},{"name":"Context Switcher Helper","category":"Productivity"},{"name":"Single Tasking Timer","category":"Productivity"},{"name":"Weekly Capacity Planner","category":"Productivity"},{"name":"Energy Management Tracker","category":"Productivity"},{"name":"Mindful Break Timer","category":"Productivity"},{"name":"Daily Shutdown Ritual","category":"Productivity"},{"name":"Morning Pages Prompt Generator","category":"Productivity"},{"name":"Inbox Zero Tracker","category":"Productivity"},{"name":"Digital Declutter Checklist","category":"Productivity"},{"name":"Focus Environment Checklist","category":"Productivity"},{"name":"Deep Work Score Calculator","category":"Productivity"},{"name":"Accountability Check In Tool","category":"Productivity"},{"name":"Progress vs Goals Tracker","category":"Productivity"},{"name":"Work Life Balance Checker","category":"Productivity"},{"name":"Boundary Setting Planner","category":"Productivity"},{"name":"No List Tracker","category":"Productivity"},{"name":"Daily Non-Negotiables Planner","category":"Productivity"},{"name":"Content Pillar Generator","category":"Content Creation"},{"name":"30 Day Post Idea Creator","category":"Content Creation"},{"name":"Caption Formula Tool","category":"Content Creation"},{"name":"Hook Generator","category":"Content Creation"},{"name":"Carousel Slide Planner","category":"Content Creation"},{"name":"Threads Post Builder","category":"Content Creation"},{"name":"Instagram Bio Optimiser","category":"Content Creation"},{"name":"Content Calendar Builder","category":"Content Creation"},{"name":"Post Repurposing Planner","category":"Content Creation"},{"name":"Hashtag Strategy Tool","category":"Content Creation"},{"name":"Content Batch Planner","category":"Content Creation"},{"name":"Viral Post Analyser","category":"Content Creation"},{"name":"Story Script Generator","category":"Content Creation"},{"name":"Reel Hook Creator","category":"Content Creation"},{"name":"YouTube Title Generator","category":"Content Creation"},{"name":"Blog Post Outline Builder","category":"Content Creation"},{"name":"Newsletter Subject Line Tester","category":"Content Creation"},{"name":"Email Body Template Tool","category":"Content Creation"},{"name":"CTA Generator","category":"Content Creation"},{"name":"Content Audit Tool","category":"Content Creation"},{"name":"Engagement Rate Calculator","category":"Content Creation"},{"name":"Best Time To Post Tool","category":"Content Creation"},{"name":"Content Theme Generator","category":"Content Creation"},{"name":"Brand Voice Checker","category":"Content Creation"},{"name":"Storytelling Framework Tool","category":"Content Creation"},{"name":"Educational Post Planner","category":"Content Creation"},{"name":"Behind The Scenes Post Ideas","category":"Content Creation"},{"name":"Personal Story Prompt Generator","category":"Content Creation"},{"name":"Controversial Opinion Post Builder","category":"Content Creation"},{"name":"Community Question Generator","category":"Content Creation"},{"name":"Poll Idea Creator","category":"Content Creation"},{"name":"Giveaway Planning Tool","category":"Content Creation"},{"name":"Collaboration Pitch Builder","category":"Content Creation"},{"name":"Guest Post Planner","category":"Content Creation"},{"name":"Podcast Episode Outline","category":"Content Creation"},{"name":"Live Stream Script Builder","category":"Content Creation"},{"name":"Content Series Planner","category":"Content Creation"},{"name":"Seasonal Content Calendar","category":"Content Creation"},{"name":"Product Launch Content Plan","category":"Content Creation"},{"name":"Evergreen Content Identifier","category":"Content Creation"},{"name":"Content Performance Tracker","category":"Content Creation"},{"name":"Follower Growth Calculator","category":"Content Creation"},{"name":"Profile Optimisation Checklist","category":"Content Creation"},{"name":"DM Script Generator","category":"Content Creation"},{"name":"Comment Response Templates","category":"Content Creation"},{"name":"Social Proof Post Builder","category":"Content Creation"},{"name":"Milestone Celebration Post Tool","category":"Content Creation"},{"name":"Content Recycling Planner","category":"Content Creation"},{"name":"Multi Platform Content Adaptor","category":"Content Creation"},{"name":"Content ROI Calculator","category":"Content Creation"},{"name":"Claude Prompt Builder","category":"AI Tools & Prompts"},{"name":"ChatGPT vs Claude Comparator","category":"AI Tools & Prompts"},{"name":"AI Prompt Library Organiser","category":"AI Tools & Prompts"},{"name":"Prompt Refinement Tool","category":"AI Tools & Prompts"},{"name":"AI Output Checker","category":"AI Tools & Prompts"},{"name":"Advanced Prompt Pack Creator","category":"AI Tools & Prompts"},{"name":"AI Workflow Builder","category":"AI Tools & Prompts"},{"name":"Claude Project Planner","category":"AI Tools & Prompts"},{"name":"AI Tool Selector","category":"AI Tools & Prompts"},{"name":"Prompt Testing Dashboard","category":"AI Tools & Prompts"},{"name":"AI Income Method Selector","category":"AI Tools & Prompts"},{"name":"AI Business Idea Generator","category":"AI Tools & Prompts"},{"name":"Prompt Monetisation Planner","category":"AI Tools & Prompts"},{"name":"AI Skill Audit Tool","category":"AI Tools & Prompts"},{"name":"Claude Conversation Starter","category":"AI Tools & Prompts"},{"name":"AI Product Builder Brief","category":"AI Tools & Prompts"},{"name":"Prompt Engineering Checklist","category":"AI Tools & Prompts"},{"name":"AI Tool Stack Planner","category":"AI Tools & Prompts"},{"name":"AI Content Calendar","category":"AI Tools & Prompts"},{"name":"Prompt Swipe File Builder","category":"AI Tools & Prompts"},{"name":"AI Writing Style Guide","category":"AI Tools & Prompts"},{"name":"Claude App Brief Generator","category":"AI Tools & Prompts"},{"name":"AI Automation Planner","category":"AI Tools & Prompts"},{"name":"Prompt Results Tracker","category":"AI Tools & Prompts"},{"name":"AI Side Hustle Calculator","category":"AI Tools & Prompts"},{"name":"Claude Output Formatter","category":"AI Tools & Prompts"},{"name":"AI Research Assistant Brief","category":"AI Tools & Prompts"},{"name":"Prompt Marketplace Planner","category":"AI Tools & Prompts"},{"name":"AI Niche Finder","category":"AI Tools & Prompts"},{"name":"Claude Mini App Brief Tool","category":"AI Tools & Prompts"},{"name":"AI Income Diversifier","category":"AI Tools & Prompts"},{"name":"Prompt Pack Pricing Calculator","category":"AI Tools & Prompts"},{"name":"AI Tool ROI Calculator","category":"AI Tools & Prompts"},{"name":"Claude Prompt Tester","category":"AI Tools & Prompts"},{"name":"AI Business Audit Tool","category":"AI Tools & Prompts"},{"name":"Prompt Library Builder","category":"AI Tools & Prompts"},{"name":"AI Content Repurposer","category":"AI Tools & Prompts"},{"name":"Claude Course Outline Builder","category":"AI Tools & Prompts"},{"name":"AI Launch Planner","category":"AI Tools & Prompts"},{"name":"Prompt Improvement Suggester","category":"AI Tools & Prompts"},{"name":"AI Skill Monetisation Map","category":"AI Tools & Prompts"},{"name":"Claude Workflow Designer","category":"AI Tools & Prompts"},{"name":"AI Product Validation Tool","category":"AI Tools & Prompts"},{"name":"Prompt Bank Organiser","category":"AI Tools & Prompts"},{"name":"AI Revenue Tracker","category":"AI Tools & Prompts"},{"name":"Claude Brief Optimiser","category":"AI Tools & Prompts"},{"name":"AI Beginner Roadmap","category":"AI Tools & Prompts"},{"name":"Prompt Success Rate Tracker","category":"AI Tools & Prompts"},{"name":"AI Tool Comparison Matrix","category":"AI Tools & Prompts"},{"name":"Claude Business Blueprint","category":"AI Tools & Prompts"},{"name":"Follower Goal Tracker","category":"Social Media Growth"},{"name":"Engagement Rate Calculator","category":"Social Media Growth"},{"name":"Profile Audit Checklist","category":"Social Media Growth"},{"name":"Bio Optimiser Tool","category":"Social Media Growth"},{"name":"Content Frequency Planner","category":"Social Media Growth"},{"name":"Growth Rate Calculator","category":"Social Media Growth"},{"name":"Platform Comparison Tool","category":"Social Media Growth"},{"name":"Audience Avatar Builder","category":"Social Media Growth"},{"name":"Niche Authority Checker","category":"Social Media Growth"},{"name":"Collaboration Finder Tool","category":"Social Media Growth"},{"name":"Viral Content Formula Tool","category":"Social Media Growth"},{"name":"Cross Platform Planner","category":"Social Media Growth"},{"name":"Social Media Detox Planner","category":"Social Media Growth"},{"name":"Posting Schedule Builder","category":"Social Media Growth"},{"name":"Analytics Dashboard","category":"Social Media Growth"},{"name":"Reach vs Engagement Tracker","category":"Social Media Growth"},{"name":"Story Views Tracker","category":"Social Media Growth"},{"name":"Link In Bio Optimiser","category":"Social Media Growth"},{"name":"Social Proof Calculator","category":"Social Media Growth"},{"name":"Influence Score Estimator","category":"Social Media Growth"},{"name":"Brand Deal Rate Calculator","category":"Social Media Growth"},{"name":"Sponsorship Pitch Builder","category":"Social Media Growth"},{"name":"UGC Creator Brief Tool","category":"Social Media Growth"},{"name":"Creator Rate Card Builder","category":"Social Media Growth"},{"name":"Media Kit Checklist","category":"Social Media Growth"},{"name":"Brand Partnership Tracker","category":"Social Media Growth"},{"name":"Audience Growth Planner","category":"Social Media Growth"},{"name":"Community Building Roadmap","category":"Social Media Growth"},{"name":"Platform Algorithm Checker","category":"Social Media Growth"},{"name":"Best Content Type Selector","category":"Social Media Growth"},{"name":"Trending Topic Finder","category":"Social Media Growth"},{"name":"Comment Strategy Planner","category":"Social Media Growth"},{"name":"DM Outreach Tracker","category":"Social Media Growth"},{"name":"Collaboration Proposal Builder","category":"Social Media Growth"},{"name":"Creator Income Calculator","category":"Social Media Growth"},{"name":"Platform Monetisation Checker","category":"Social Media Growth"},{"name":"Social Media Audit Tool","category":"Social Media Growth"},{"name":"Content Performance Scorer","category":"Social Media Growth"},{"name":"Reach Multiplier Calculator","category":"Social Media Growth"},{"name":"Shares vs Saves Tracker","category":"Social Media Growth"},{"name":"Story Poll Results Tracker","category":"Social Media Growth"},{"name":"Live Stream Planner","category":"Social Media Growth"},{"name":"Creator Burnout Checker","category":"Social Media Growth"},{"name":"Consistency Score Calculator","category":"Social Media Growth"},{"name":"Social Media Goal Setter","category":"Social Media Growth"},{"name":"Platform Switch Planner","category":"Social Media Growth"},{"name":"Niche Down Tool","category":"Social Media Growth"},{"name":"Content Pillars Clarifier","category":"Social Media Growth"},{"name":"Brand Aesthetic Planner","category":"Social Media Growth"},{"name":"Social Media ROI Calculator","category":"Social Media Growth"},{"name":"Email List Growth Tracker","category":"Email Marketing"},{"name":"Open Rate Calculator","category":"Email Marketing"},{"name":"Click Through Rate Tracker","category":"Email Marketing"},{"name":"Subject Line Tester","category":"Email Marketing"},{"name":"Email Sequence Planner","category":"Email Marketing"},{"name":"Welcome Sequence Builder","category":"Email Marketing"},{"name":"Launch Email Planner","category":"Email Marketing"},{"name":"Re-engagement Campaign Tool","category":"Email Marketing"},{"name":"Unsubscribe Rate Tracker","category":"Email Marketing"},{"name":"Email Revenue Calculator","category":"Email Marketing"},{"name":"List Segmentation Planner","category":"Email Marketing"},{"name":"Lead Magnet Idea Generator","category":"Email Marketing"},{"name":"Opt In Page Checklist","category":"Email Marketing"},{"name":"Email Frequency Planner","category":"Email Marketing"},{"name":"Nurture Sequence Builder","category":"Email Marketing"},{"name":"Broadcast Email Planner","category":"Email Marketing"},{"name":"Email Audit Tool","category":"Email Marketing"},{"name":"Deliverability Checker","category":"Email Marketing"},{"name":"Email Brand Voice Tool","category":"Email Marketing"},{"name":"Newsletter Planner","category":"Email Marketing"},{"name":"Email CTA Generator","category":"Email Marketing"},{"name":"Subscriber Value Calculator","category":"Email Marketing"},{"name":"Email Funnel Mapper","category":"Email Marketing"},{"name":"Automation Sequence Planner","category":"Email Marketing"},{"name":"Tagging Strategy Tool","category":"Email Marketing"},{"name":"Email Split Test Planner","category":"Email Marketing"},{"name":"List Health Checker","category":"Email Marketing"},{"name":"Email Income Projector","category":"Email Marketing"},{"name":"Subscriber Milestone Tracker","category":"Email Marketing"},{"name":"Email Content Calendar","category":"Email Marketing"},{"name":"Plain Text vs HTML Checker","category":"Email Marketing"},{"name":"Email Length Optimiser","category":"Email Marketing"},{"name":"P.S. Line Generator","category":"Email Marketing"},{"name":"Email Opener Formula Tool","category":"Email Marketing"},{"name":"Story Email Builder","category":"Email Marketing"},{"name":"Value Email Planner","category":"Email Marketing"},{"name":"Sales Email Framework Tool","category":"Email Marketing"},{"name":"Last Chance Email Builder","category":"Email Marketing"},{"name":"Post Launch Email Planner","category":"Email Marketing"},{"name":"Thank You Email Generator","category":"Email Marketing"},{"name":"Onboarding Sequence Builder","category":"Email Marketing"},{"name":"Upsell Email Planner","category":"Email Marketing"},{"name":"Testimonial Request Email Tool","category":"Email Marketing"},{"name":"Survey Email Builder","category":"Email Marketing"},{"name":"Anniversary Email Planner","category":"Email Marketing"},{"name":"Birthday Email Tool","category":"Email Marketing"},{"name":"Win Back Campaign Planner","category":"Email Marketing"},{"name":"Email Metrics Dashboard","category":"Email Marketing"},{"name":"List Monetisation Calculator","category":"Email Marketing"},{"name":"Email Empire Roadmap","category":"Email Marketing"},{"name":"Morning Mindset Setter","category":"Mindset & Personal Development"},{"name":"Gratitude Journal Tool","category":"Mindset & Personal Development"},{"name":"Affirmation Generator","category":"Mindset & Personal Development"},{"name":"Limiting Belief Identifier","category":"Mindset & Personal Development"},{"name":"Confidence Score Calculator","category":"Mindset & Personal Development"},{"name":"Fear Mapping Tool","category":"Mindset & Personal Development"},{"name":"Growth Mindset Checker","category":"Mindset & Personal Development"},{"name":"Daily Intention Builder","category":"Mindset & Personal Development"},{"name":"Values Clarifier","category":"Mindset & Personal Development"},{"name":"Life Wheel Assessment","category":"Mindset & Personal Development"},{"name":"Strengths Identifier","category":"Mindset & Personal Development"},{"name":"Weakness to Strength Converter","category":"Mindset & Personal Development"},{"name":"Goal Alignment Checker","category":"Mindset & Personal Development"},{"name":"Motivation Level Tracker","category":"Mindset & Personal Development"},{"name":"Mindset Reset Tool","category":"Mindset & Personal Development"},{"name":"Inner Critic Silencer","category":"Mindset & Personal Development"},{"name":"Self Compassion Prompt Tool","category":"Mindset & Personal Development"},{"name":"Resilience Score Calculator","category":"Mindset & Personal Development"},{"name":"Comfort Zone Expander","category":"Mindset & Personal Development"},{"name":"Courage Action Planner","category":"Mindset & Personal Development"},{"name":"Identity Shift Tool","category":"Mindset & Personal Development"},{"name":"Belief Upgrade Planner","category":"Mindset & Personal Development"},{"name":"Vision Clarity Tool","category":"Mindset & Personal Development"},{"name":"Purpose Finder","category":"Mindset & Personal Development"},{"name":"Legacy Builder","category":"Mindset & Personal Development"},{"name":"Success Definition Tool","category":"Mindset & Personal Development"},{"name":"Celebration Practice Planner","category":"Mindset & Personal Development"},{"name":"Emotional Intelligence Checker","category":"Mindset & Personal Development"},{"name":"Boundaries Assessment Tool","category":"Mindset & Personal Development"},{"name":"Energy Vampire Identifier","category":"Mindset & Personal Development"},{"name":"People Pleasing Pattern Checker","category":"Mindset & Personal Development"},{"name":"Imposter Syndrome Buster","category":"Mindset & Personal Development"},{"name":"Perfectionism Checker","category":"Mindset & Personal Development"},{"name":"Procrastination Root Cause Tool","category":"Mindset & Personal Development"},{"name":"Self Sabotage Identifier","category":"Mindset & Personal Development"},{"name":"Worthiness Score Calculator","category":"Mindset & Personal Development"},{"name":"Money Mindset Checker","category":"Mindset & Personal Development"},{"name":"Abundance Mindset Builder","category":"Mindset & Personal Development"},{"name":"Scarcity Pattern Identifier","category":"Mindset & Personal Development"},{"name":"Future Self Visualiser","category":"Mindset & Personal Development"},{"name":"Daily Power Questions Tool","category":"Mindset & Personal Development"},{"name":"Evening Reflection Prompt","category":"Mindset & Personal Development"},{"name":"Weekly Mindset Review","category":"Mindset & Personal Development"},{"name":"Monthly Growth Assessment","category":"Mindset & Personal Development"},{"name":"Quarterly Life Audit","category":"Mindset & Personal Development"},{"name":"Annual Transformation Planner","category":"Mindset & Personal Development"},{"name":"Journaling Prompt Generator","category":"Mindset & Personal Development"},{"name":"Meditation Topic Suggester","category":"Mindset & Personal Development"},{"name":"Breathwork Timer","category":"Mindset & Personal Development"},{"name":"Mind Body Connection Checker","category":"Mindset & Personal Development"},{"name":"Monthly Budget Planner","category":"Finance & Money"},{"name":"Savings Goal Calculator","category":"Finance & Money"},{"name":"Debt Payoff Tracker","category":"Finance & Money"},{"name":"Emergency Fund Builder","category":"Finance & Money"},{"name":"Income vs Expenses Dashboard","category":"Finance & Money"},{"name":"Net Worth Calculator","category":"Finance & Money"},{"name":"Financial Freedom Calculator","category":"Finance & Money"},{"name":"Investment Goal Tracker","category":"Finance & Money"},{"name":"Side Hustle Income Tracker","category":"Finance & Money"},{"name":"Multiple Income Stream Planner","category":"Finance & Money"},{"name":"Money Date Planner","category":"Finance & Money"},{"name":"Spending Audit Tool","category":"Finance & Money"},{"name":"Subscription Cost Calculator","category":"Finance & Money"},{"name":"Financial Goal Setter","category":"Finance & Money"},{"name":"Money Mindset Assessment","category":"Finance & Money"},{"name":"Wealth Building Roadmap","category":"Finance & Money"},{"name":"Tax Preparation Checklist","category":"Finance & Money"},{"name":"Business Expense Tracker","category":"Finance & Money"},{"name":"Profit First Calculator","category":"Finance & Money"},{"name":"Revenue Goal Planner","category":"Finance & Money"},{"name":"Price Increase Calculator","category":"Finance & Money"},{"name":"Raise Request Builder","category":"Finance & Money"},{"name":"Freelance Rate Setter","category":"Finance & Money"},{"name":"Hourly Rate Calculator","category":"Finance & Money"},{"name":"Package Pricing Tool","category":"Finance & Money"},{"name":"Discount Impact Calculator","category":"Finance & Money"},{"name":"Black Friday Revenue Planner","category":"Finance & Money"},{"name":"Holiday Income Projector","category":"Finance & Money"},{"name":"Passive Income Calculator","category":"Finance & Money"},{"name":"Financial Independence Tracker","category":"Finance & Money"},{"name":"FIRE Number Calculator","category":"Finance & Money"},{"name":"Retirement Savings Planner","category":"Finance & Money"},{"name":"College Fund Calculator","category":"Finance & Money"},{"name":"Home Buying Readiness Checker","category":"Finance & Money"},{"name":"Credit Score Improvement Planner","category":"Finance & Money"},{"name":"Bill Negotiation Tracker","category":"Finance & Money"},{"name":"Grocery Budget Optimiser","category":"Finance & Money"},{"name":"Eating Out Budget Tracker","category":"Finance & Money"},{"name":"Travel Fund Calculator","category":"Finance & Money"},{"name":"Fun Money Allocator","category":"Finance & Money"},{"name":"Giving Budget Planner","category":"Finance & Money"},{"name":"Financial Values Clarifier","category":"Finance & Money"},{"name":"Money Story Identifier","category":"Finance & Money"},{"name":"Wealth Affirmation Generator","category":"Finance & Money"},{"name":"Financial Milestone Celebrator","category":"Finance & Money"},{"name":"Money Leak Finder","category":"Finance & Money"},{"name":"Financial Boundary Setter","category":"Finance & Money"},{"name":"Abundance Journal Prompt Tool","category":"Finance & Money"},{"name":"Money Goal Vision Board","category":"Finance & Money"},{"name":"Financial Legacy Planner","category":"Finance & Money"},{"name":"Daily Water Intake Tracker","category":"Health & Wellness"},{"name":"Sleep Quality Logger","category":"Health & Wellness"},{"name":"Meal Planning Tool","category":"Health & Wellness"},{"name":"Workout Planner","category":"Health & Wellness"},{"name":"Step Goal Tracker","category":"Health & Wellness"},{"name":"Calorie Awareness Tool","category":"Health & Wellness"},{"name":"Stress Level Checker","category":"Health & Wellness"},{"name":"Mood Tracker","category":"Health & Wellness"},{"name":"Energy Level Monitor","category":"Health & Wellness"},{"name":"Rest Day Planner","category":"Health & Wellness"},{"name":"Supplement Tracker","category":"Health & Wellness"},{"name":"Medication Reminder Tool","category":"Health & Wellness"},{"name":"Symptom Logger","category":"Health & Wellness"},{"name":"Doctor Appointment Planner","category":"Health & Wellness"},{"name":"Health Goal Setter","category":"Health & Wellness"},{"name":"Body Measurement Tracker","category":"Health & Wellness"},{"name":"Fitness Milestone Celebrator","category":"Health & Wellness"},{"name":"Workout Streak Counter","category":"Health & Wellness"},{"name":"Active Recovery Planner","category":"Health & Wellness"},{"name":"Stretching Routine Builder","category":"Health & Wellness"},{"name":"Breathwork Practice Timer","category":"Health & Wellness"},{"name":"Meditation Session Tracker","category":"Health & Wellness"},{"name":"Gratitude Health Journal","category":"Health & Wellness"},{"name":"Emotional Eating Checker","category":"Health & Wellness"},{"name":"Hunger Scale Tool","category":"Health & Wellness"},{"name":"Intuitive Eating Planner","category":"Health & Wellness"},{"name":"Food Mood Journal","category":"Health & Wellness"},{"name":"Anti Inflammatory Food Tracker","category":"Health & Wellness"},{"name":"Gut Health Planner","category":"Health & Wellness"},{"name":"Hormone Balance Checker","category":"Health & Wellness"},{"name":"Cycle Tracking Tool","category":"Health & Wellness"},{"name":"Perimenopause Symptom Logger","category":"Health & Wellness"},{"name":"Menopause Support Planner","category":"Health & Wellness"},{"name":"Skin Care Routine Builder","category":"Health & Wellness"},{"name":"Hair Care Tracker","category":"Health & Wellness"},{"name":"Self Care Menu Builder","category":"Health & Wellness"},{"name":"Boundaries For Health Planner","category":"Health & Wellness"},{"name":"Screen Time Tracker","category":"Health & Wellness"},{"name":"Digital Detox Planner","category":"Health & Wellness"},{"name":"Nature Time Tracker","category":"Health & Wellness"},{"name":"Social Battery Checker","category":"Health & Wellness"},{"name":"Introvert Recharge Planner","category":"Health & Wellness"},{"name":"Chronic Pain Journal","category":"Health & Wellness"},{"name":"Anxiety Trigger Tracker","category":"Health & Wellness"},{"name":"Depression Support Planner","category":"Health & Wellness"},{"name":"Therapy Prep Tool","category":"Health & Wellness"},{"name":"Wellness Wheel Assessment","category":"Health & Wellness"},{"name":"Health Vision Board","category":"Health & Wellness"},{"name":"Longevity Habit Tracker","category":"Health & Wellness"},{"name":"Holistic Health Dashboard","category":"Health & Wellness"},{"name":"Date Night Idea Generator","category":"Relationships & Family"},{"name":"Relationship Health Checker","category":"Relationships & Family"},{"name":"Communication Style Tool","category":"Relationships & Family"},{"name":"Love Language Identifier","category":"Relationships & Family"},{"name":"Conflict Resolution Planner","category":"Relationships & Family"},{"name":"Appreciation Practice Tool","category":"Relationships & Family"},{"name":"Family Meeting Agenda Builder","category":"Relationships & Family"},{"name":"Chore Distribution Planner","category":"Relationships & Family"},{"name":"Family Budget Tool","category":"Relationships & Family"},{"name":"Kids Activity Planner","category":"Relationships & Family"},{"name":"Parenting Style Checker","category":"Relationships & Family"},{"name":"Screen Time Agreement Builder","category":"Relationships & Family"},{"name":"Family Values Clarifier","category":"Relationships & Family"},{"name":"Tradition Builder Tool","category":"Relationships & Family"},{"name":"Memory Making Planner","category":"Relationships & Family"},{"name":"Family Goal Setter","category":"Relationships & Family"},{"name":"Holiday Planning Tool","category":"Relationships & Family"},{"name":"Birthday Reminder Tracker","category":"Relationships & Family"},{"name":"Gift Idea Generator","category":"Relationships & Family"},{"name":"Celebration Planner","category":"Relationships & Family"},{"name":"Friendship Audit Tool","category":"Relationships & Family"},{"name":"Social Calendar Planner","category":"Relationships & Family"},{"name":"Boundary Setting Script Tool","category":"Relationships & Family"},{"name":"Difficult Conversation Planner","category":"Relationships & Family"},{"name":"Apology Formula Builder","category":"Relationships & Family"},{"name":"Forgiveness Journal Tool","category":"Relationships & Family"},{"name":"Gratitude for Others Tracker","category":"Relationships & Family"},{"name":"Acts of Service Planner","category":"Relationships & Family"},{"name":"Quality Time Tracker","category":"Relationships & Family"},{"name":"Long Distance Relationship Planner","category":"Relationships & Family"},{"name":"New Baby Preparation Checklist","category":"Relationships & Family"},{"name":"Toddler Activity Generator","category":"Relationships & Family"},{"name":"School Age Learning Planner","category":"Relationships & Family"},{"name":"Teen Communication Tool","category":"Relationships & Family"},{"name":"Empty Nest Transition Planner","category":"Relationships & Family"},{"name":"Ageing Parent Care Planner","category":"Relationships & Family"},{"name":"Grief Support Journal","category":"Relationships & Family"},{"name":"Divorce Recovery Planner","category":"Relationships & Family"},{"name":"Blended Family Toolkit","category":"Relationships & Family"},{"name":"Co Parenting Communication Tool","category":"Relationships & Family"},{"name":"Self Love Practice Builder","category":"Relationships & Family"},{"name":"Single Parent Support Planner","category":"Relationships & Family"},{"name":"Community Connection Tool","category":"Relationships & Family"},{"name":"Neighbour Relationship Builder","category":"Relationships & Family"},{"name":"Work Friendship Planner","category":"Relationships & Family"},{"name":"Mentor Relationship Tracker","category":"Relationships & Family"},{"name":"Mentee Progress Tool","category":"Relationships & Family"},{"name":"Networking Conversation Starter","category":"Relationships & Family"},{"name":"Professional Relationship Builder","category":"Relationships & Family"},{"name":"Legacy Letter Generator","category":"Relationships & Family"},{"name":"Study Session Planner","category":"Education & Learning"},{"name":"Learning Goal Setter","category":"Education & Learning"},{"name":"Course Note Organiser","category":"Education & Learning"},{"name":"Flashcard Generator","category":"Education & Learning"},{"name":"Reading List Tracker","category":"Education & Learning"},{"name":"Book Summary Builder","category":"Education & Learning"},{"name":"Skill Acquisition Planner","category":"Education & Learning"},{"name":"Learning Style Identifier","category":"Education & Learning"},{"name":"Knowledge Gap Finder","category":"Education & Learning"},{"name":"Course Completion Tracker","category":"Education & Learning"},{"name":"Online Course Evaluator","category":"Education & Learning"},{"name":"Certification Roadmap Builder","category":"Education & Learning"},{"name":"Language Learning Planner","category":"Education & Learning"},{"name":"Vocabulary Builder Tool","category":"Education & Learning"},{"name":"Grammar Checker Brief","category":"Education & Learning"},{"name":"Essay Outline Builder","category":"Education & Learning"},{"name":"Research Topic Generator","category":"Education & Learning"},{"name":"Bibliography Organiser","category":"Education & Learning"},{"name":"Study Schedule Builder","category":"Education & Learning"},{"name":"Exam Preparation Planner","category":"Education & Learning"},{"name":"Test Anxiety Reducer","category":"Education & Learning"},{"name":"Academic Goal Tracker","category":"Education & Learning"},{"name":"Scholarship Search Planner","category":"Education & Learning"},{"name":"Student Budget Calculator","category":"Education & Learning"},{"name":"Internship Application Tracker","category":"Education & Learning"},{"name":"Career Exploration Tool","category":"Education & Learning"},{"name":"Skills Resume Builder","category":"Education & Learning"},{"name":"Interview Preparation Checklist","category":"Education & Learning"},{"name":"Job Application Tracker","category":"Education & Learning"},{"name":"Salary Negotiation Calculator","category":"Education & Learning"},{"name":"Professional Development Planner","category":"Education & Learning"},{"name":"Conference Learning Tool","category":"Education & Learning"},{"name":"Workshop Notes Organiser","category":"Education & Learning"},{"name":"Podcast Learning Tracker","category":"Education & Learning"},{"name":"YouTube Learning Planner","category":"Education & Learning"},{"name":"Newsletter Knowledge Tracker","category":"Education & Learning"},{"name":"Mastermind Prep Tool","category":"Education & Learning"},{"name":"Coaching Session Planner","category":"Education & Learning"},{"name":"Mentor Meeting Agenda","category":"Education & Learning"},{"name":"Peer Learning Group Organiser","category":"Education & Learning"},{"name":"Teaching Preparation Tool","category":"Education & Learning"},{"name":"Curriculum Builder","category":"Education & Learning"},{"name":"Lesson Plan Creator","category":"Education & Learning"},{"name":"Student Progress Tracker","category":"Education & Learning"},{"name":"Parent Teacher Meeting Prep","category":"Education & Learning"},{"name":"Homeschool Planner","category":"Education & Learning"},{"name":"Unschooling Activity Generator","category":"Education & Learning"},{"name":"ADHD Learning Support Tool","category":"Education & Learning"},{"name":"Dyslexia Friendly Study Planner","category":"Education & Learning"},{"name":"Gifted Learner Challenge Builder","category":"Education & Learning"},{"name":"Trip Planning Tool","category":"Travel & Lifestyle"},{"name":"Packing List Generator","category":"Travel & Lifestyle"},{"name":"Travel Budget Calculator","category":"Travel & Lifestyle"},{"name":"Flight Comparison Tracker","category":"Travel & Lifestyle"},{"name":"Hotel Checklist Tool","category":"Travel & Lifestyle"},{"name":"Itinerary Builder","category":"Travel & Lifestyle"},{"name":"Travel Goal Setter","category":"Travel & Lifestyle"},{"name":"Passport Expiry Tracker","category":"Travel & Lifestyle"},{"name":"Travel Insurance Checker","category":"Travel & Lifestyle"},{"name":"Solo Travel Safety Planner","category":"Travel & Lifestyle"},{"name":"Digital Nomad Setup Checker","category":"Travel & Lifestyle"},{"name":"Remote Work Travel Planner","category":"Travel & Lifestyle"},{"name":"Time Zone Converter","category":"Travel & Lifestyle"},{"name":"Currency Budget Tool","category":"Travel & Lifestyle"},{"name":"Travel Phrase Generator","category":"Travel & Lifestyle"},{"name":"Cultural Etiquette Checker","category":"Travel & Lifestyle"},{"name":"Restaurant Budget Planner","category":"Travel & Lifestyle"},{"name":"Activities Wishlist Builder","category":"Travel & Lifestyle"},{"name":"Travel Memory Journal","category":"Travel & Lifestyle"},{"name":"Photo Organisation Planner","category":"Travel & Lifestyle"},{"name":"Travel Blog Post Planner","category":"Travel & Lifestyle"},{"name":"Instagram Travel Content Tool","category":"Travel & Lifestyle"},{"name":"Travel Affiliate Income Planner","category":"Travel & Lifestyle"},{"name":"House Sitting Planner","category":"Travel & Lifestyle"},{"name":"Pet Travel Checklist","category":"Travel & Lifestyle"},{"name":"Road Trip Planner","category":"Travel & Lifestyle"},{"name":"Camping Checklist Builder","category":"Travel & Lifestyle"},{"name":"Hiking Preparation Tool","category":"Travel & Lifestyle"},{"name":"Beach Vacation Planner","category":"Travel & Lifestyle"},{"name":"City Break Itinerary Builder","category":"Travel & Lifestyle"},{"name":"Weekend Getaway Planner","category":"Travel & Lifestyle"},{"name":"Staycation Planner","category":"Travel & Lifestyle"},{"name":"Local Explorer Tool","category":"Travel & Lifestyle"},{"name":"Bucket List Builder","category":"Travel & Lifestyle"},{"name":"Travel Dream Board","category":"Travel & Lifestyle"},{"name":"Slow Travel Planner","category":"Travel & Lifestyle"},{"name":"Long Term Travel Budget","category":"Travel & Lifestyle"},{"name":"Travel Health Checklist","category":"Travel & Lifestyle"},{"name":"Visa Requirements Tracker","category":"Travel & Lifestyle"},{"name":"Travel Document Organiser","category":"Travel & Lifestyle"},{"name":"Emergency Contact Card Builder","category":"Travel & Lifestyle"},{"name":"Travel Community Finder","category":"Travel & Lifestyle"},{"name":"Travel Accountability Partner Tool","category":"Travel & Lifestyle"},{"name":"Expat Transition Planner","category":"Travel & Lifestyle"},{"name":"Country Research Tool","category":"Travel & Lifestyle"},{"name":"Cost Of Living Comparator","category":"Travel & Lifestyle"},{"name":"Moving Abroad Checklist","category":"Travel & Lifestyle"},{"name":"Homesickness Journal","category":"Travel & Lifestyle"},{"name":"Cultural Integration Planner","category":"Travel & Lifestyle"},{"name":"Global Lifestyle Designer","category":"Travel & Lifestyle"},{"name":"Weekly Meal Planner","category":"Food & Nutrition"},{"name":"Grocery List Generator","category":"Food & Nutrition"},{"name":"Recipe Idea Tool","category":"Food & Nutrition"},{"name":"Nutrition Goal Tracker","category":"Food & Nutrition"},{"name":"Macro Calculator","category":"Food & Nutrition"},{"name":"Protein Intake Tracker","category":"Food & Nutrition"},{"name":"Meal Prep Planner","category":"Food & Nutrition"},{"name":"Batch Cooking Schedule","category":"Food & Nutrition"},{"name":"Food Budget Calculator","category":"Food & Nutrition"},{"name":"Pantry Audit Tool","category":"Food & Nutrition"},{"name":"Food Waste Tracker","category":"Food & Nutrition"},{"name":"Seasonal Eating Planner","category":"Food & Nutrition"},{"name":"Farmers Market Shopping List","category":"Food & Nutrition"},{"name":"Smoothie Recipe Generator","category":"Food & Nutrition"},{"name":"Snack Planning Tool","category":"Food & Nutrition"},{"name":"Comfort Food Healthifier","category":"Food & Nutrition"},{"name":"Dining Out Budget Tracker","category":"Food & Nutrition"},{"name":"Restaurant Menu Planner","category":"Food & Nutrition"},{"name":"Food Sensitivity Tracker","category":"Food & Nutrition"},{"name":"Elimination Diet Planner","category":"Food & Nutrition"},{"name":"Gut Health Food Diary","category":"Food & Nutrition"},{"name":"Anti Inflammatory Meal Planner","category":"Food & Nutrition"},{"name":"Intermittent Fasting Tracker","category":"Food & Nutrition"},{"name":"Fasting Window Calculator","category":"Food & Nutrition"},{"name":"Blood Sugar Balance Planner","category":"Food & Nutrition"},{"name":"Energy Food Tracker","category":"Food & Nutrition"},{"name":"Pre Workout Meal Planner","category":"Food & Nutrition"},{"name":"Post Workout Nutrition Tool","category":"Food & Nutrition"},{"name":"Hydration Calculator","category":"Food & Nutrition"},{"name":"Caffeine Intake Tracker","category":"Food & Nutrition"},{"name":"Alcohol Consumption Monitor","category":"Food & Nutrition"},{"name":"Sugar Reduction Planner","category":"Food & Nutrition"},{"name":"Plant Based Transition Tool","category":"Food & Nutrition"},{"name":"Vegan Protein Planner","category":"Food & Nutrition"},{"name":"Keto Macro Calculator","category":"Food & Nutrition"},{"name":"Mediterranean Diet Planner","category":"Food & Nutrition"},{"name":"Mindful Eating Journal","category":"Food & Nutrition"},{"name":"Hunger Fullness Tracker","category":"Food & Nutrition"},{"name":"Emotional Eating Log","category":"Food & Nutrition"},{"name":"Food Joy Ratio Calculator","category":"Food & Nutrition"},{"name":"Kids Nutrition Planner","category":"Food & Nutrition"},{"name":"Picky Eater Meal Helper","category":"Food & Nutrition"},{"name":"Family Dinner Planner","category":"Food & Nutrition"},{"name":"Holiday Meal Budget Tool","category":"Food & Nutrition"},{"name":"Potluck Dish Suggester","category":"Food & Nutrition"},{"name":"Cookbook Challenge Tracker","category":"Food & Nutrition"},{"name":"Food Photography Planner","category":"Food & Nutrition"},{"name":"Food Blog Content Calendar","category":"Food & Nutrition"},{"name":"Recipe Development Tool","category":"Food & Nutrition"},{"name":"Food Business Income Tracker","category":"Food & Nutrition"},{"name":"Home Declutter Planner","category":"Home & Organisation"},{"name":"Room By Room Organiser","category":"Home & Organisation"},{"name":"Cleaning Schedule Builder","category":"Home & Organisation"},{"name":"Deep Clean Checklist","category":"Home & Organisation"},{"name":"Moving House Planner","category":"Home & Organisation"},{"name":"Home Renovation Budget Tool","category":"Home & Organisation"},{"name":"Interior Design Style Finder","category":"Home & Organisation"},{"name":"Furniture Layout Planner","category":"Home & Organisation"},{"name":"Home Maintenance Tracker","category":"Home & Organisation"},{"name":"Appliance Warranty Organiser","category":"Home & Organisation"},{"name":"Home Insurance Checker","category":"Home & Organisation"},{"name":"Mortgage Calculator","category":"Home & Organisation"},{"name":"Rent vs Buy Calculator","category":"Home & Organisation"},{"name":"Home Office Setup Checklist","category":"Home & Organisation"},{"name":"Storage Solution Planner","category":"Home & Organisation"},{"name":"Wardrobe Audit Tool","category":"Home & Organisation"},{"name":"Capsule Wardrobe Builder","category":"Home & Organisation"},{"name":"Laundry System Planner","category":"Home & Organisation"},{"name":"Paper Clutter Organiser","category":"Home & Organisation"},{"name":"Digital File Organiser","category":"Home & Organisation"},{"name":"Password Organiser Brief","category":"Home & Organisation"},{"name":"Subscription Tracker","category":"Home & Organisation"},{"name":"Bill Payment Calendar","category":"Home & Organisation"},{"name":"Emergency Preparedness Checklist","category":"Home & Organisation"},{"name":"First Aid Kit Inventory","category":"Home & Organisation"},{"name":"Garden Planting Calendar","category":"Home & Organisation"},{"name":"Plant Care Tracker","category":"Home & Organisation"},{"name":"Pet Care Schedule","category":"Home & Organisation"},{"name":"Family Command Centre Builder","category":"Home & Organisation"},{"name":"School Year Planner","category":"Home & Organisation"},{"name":"Homework Tracker","category":"Home & Organisation"},{"name":"After School Activity Planner","category":"Home & Organisation"},{"name":"Summer Schedule Builder","category":"Home & Organisation"},{"name":"Holiday Decoration Organiser","category":"Home & Organisation"},{"name":"Gift Wrap Inventory Tool","category":"Home & Organisation"},{"name":"Party Planning Checklist","category":"Home & Organisation"},{"name":"Birthday Budget Planner","category":"Home & Organisation"},{"name":"Holiday Meal Planner","category":"Home & Organisation"},{"name":"Seasonal Home Checklist","category":"Home & Organisation"},{"name":"Spring Cleaning Planner","category":"Home & Organisation"},{"name":"Winter Preparation Checklist","category":"Home & Organisation"},{"name":"Garage Organisation Tool","category":"Home & Organisation"},{"name":"Basement Declutter Planner","category":"Home & Organisation"},{"name":"Attic Inventory Builder","category":"Home & Organisation"},{"name":"Storage Unit Organiser","category":"Home & Organisation"},{"name":"Donation Tracker","category":"Home & Organisation"},{"name":"Sell Online Preparation Tool","category":"Home & Organisation"},{"name":"Home Inventory Insurance Tool","category":"Home & Organisation"},{"name":"Neighbourhood Watch Planner","category":"Home & Organisation"},{"name":"Community Board Organiser","category":"Home & Organisation"},{"name":"Resume Bullet Point Builder","category":"Career & Job Search"},{"name":"Cover Letter Outline Tool","category":"Career & Job Search"},{"name":"Job Application Tracker","category":"Career & Job Search"},{"name":"Interview Preparation Checklist","category":"Career & Job Search"},{"name":"Salary Research Tool","category":"Career & Job Search"},{"name":"Negotiation Script Builder","category":"Career & Job Search"},{"name":"Career Values Clarifier","category":"Career & Job Search"},{"name":"Skills Gap Identifier","category":"Career & Job Search"},{"name":"Career Change Planner","category":"Career & Job Search"},{"name":"LinkedIn Profile Optimiser","category":"Career & Job Search"},{"name":"Professional Bio Builder","category":"Career & Job Search"},{"name":"Reference Request Tool","category":"Career & Job Search"},{"name":"Recommendation Letter Planner","category":"Career & Job Search"},{"name":"Performance Review Prep Tool","category":"Career & Job Search"},{"name":"Promotion Case Builder","category":"Career & Job Search"},{"name":"Leadership Style Checker","category":"Career & Job Search"},{"name":"Networking Event Planner","category":"Career & Job Search"},{"name":"Informational Interview Tool","category":"Career & Job Search"},{"name":"Mentor Finder Brief","category":"Career & Job Search"},{"name":"Career Goal Setter","category":"Career & Job Search"},{"name":"Five Year Plan Builder","category":"Career & Job Search"},{"name":"Professional Development Tracker","category":"Career & Job Search"},{"name":"Conference Preparation Tool","category":"Career & Job Search"},{"name":"Speaking Opportunity Finder","category":"Career & Job Search"},{"name":"Article Writing Planner","category":"Career & Job Search"},{"name":"Thought Leadership Builder","category":"Career & Job Search"},{"name":"Personal Brand Audit","category":"Career & Job Search"},{"name":"Online Presence Checker","category":"Career & Job Search"},{"name":"Portfolio Builder Brief","category":"Career & Job Search"},{"name":"Case Study Creator","category":"Career & Job Search"},{"name":"Work Boundary Setter","category":"Career & Job Search"},{"name":"Burnout Prevention Checker","category":"Career & Job Search"},{"name":"Work Style Identifier","category":"Career & Job Search"},{"name":"Team Communication Tool","category":"Career & Job Search"},{"name":"Meeting Effectiveness Checker","category":"Career & Job Search"},{"name":"Email Productivity Tool","category":"Career & Job Search"},{"name":"Remote Work Setup Checker","category":"Career & Job Search"},{"name":"Hybrid Work Planner","category":"Career & Job Search"},{"name":"Workplace Conflict Tool","category":"Career & Job Search"},{"name":"Difficult Manager Planner","category":"Career & Job Search"},{"name":"Toxic Workplace Identifier","category":"Career & Job Search"},{"name":"Resignation Letter Builder","category":"Career & Job Search"},{"name":"Exit Interview Prep Tool","category":"Career & Job Search"},{"name":"Career Break Planner","category":"Career & Job Search"},{"name":"Return To Work Checklist","category":"Career & Job Search"},{"name":"Freelance Transition Planner","category":"Career & Job Search"},{"name":"Entrepreneurship Readiness Checker","category":"Career & Job Search"},{"name":"Side Hustle To Business Planner","category":"Career & Job Search"},{"name":"Retirement Readiness Tool","category":"Career & Job Search"},{"name":"Legacy Career Builder","category":"Career & Job Search"},{"name":"Discovery Call Script Builder","category":"Coaching & Service Providers"},{"name":"Client Intake Form Builder","category":"Coaching & Service Providers"},{"name":"Coaching Package Pricing Tool","category":"Coaching & Service Providers"},{"name":"Session Agenda Builder","category":"Coaching & Service Providers"},{"name":"Client Progress Tracker","category":"Coaching & Service Providers"},{"name":"Transformation Timeline Tool","category":"Coaching & Service Providers"},{"name":"Coaching Programme Outline Builder","category":"Coaching & Service Providers"},{"name":"Group Programme Planner","category":"Coaching & Service Providers"},{"name":"VIP Day Agenda Builder","category":"Coaching & Service Providers"},{"name":"Retreat Planning Tool","category":"Coaching & Service Providers"},{"name":"Workshop Outline Builder","category":"Coaching & Service Providers"},{"name":"Masterclass Script Planner","category":"Coaching & Service Providers"},{"name":"Signature Framework Builder","category":"Coaching & Service Providers"},{"name":"Methodology Namer","category":"Coaching & Service Providers"},{"name":"Client Results Tracker","category":"Coaching & Service Providers"},{"name":"Testimonial Collection Tool","category":"Coaching & Service Providers"},{"name":"Case Study Builder","category":"Coaching & Service Providers"},{"name":"Referral Programme Planner","category":"Coaching & Service Providers"},{"name":"Client Retention Tracker","category":"Coaching & Service Providers"},{"name":"Offboarding Checklist","category":"Coaching & Service Providers"},{"name":"Waitlist Manager Tool","category":"Coaching & Service Providers"},{"name":"Application Form Builder","category":"Coaching & Service Providers"},{"name":"Client Fit Checker","category":"Coaching & Service Providers"},{"name":"Boundary Setting Script","category":"Coaching & Service Providers"},{"name":"Difficult Client Planner","category":"Coaching & Service Providers"},{"name":"Scope Creep Identifier","category":"Coaching & Service Providers"},{"name":"Rate Increase Calculator","category":"Coaching & Service Providers"},{"name":"Package Upsell Planner","category":"Coaching & Service Providers"},{"name":"Passive Income from Coaching Tool","category":"Coaching & Service Providers"},{"name":"Course from Coaching Builder","category":"Coaching & Service Providers"},{"name":"Podcast from Expertise Planner","category":"Coaching & Service Providers"},{"name":"Book from Coaching Outline","category":"Coaching & Service Providers"},{"name":"Speaking from Coaching Planner","category":"Coaching & Service Providers"},{"name":"Certification Programme Builder","category":"Coaching & Service Providers"},{"name":"Licensing Model Planner","category":"Coaching & Service Providers"},{"name":"Affiliate Programme Designer","category":"Coaching & Service Providers"},{"name":"Joint Venture Planner","category":"Coaching & Service Providers"},{"name":"Co Creation Tool","category":"Coaching & Service Providers"},{"name":"Brand Partnership Brief","category":"Coaching & Service Providers"},{"name":"Media Appearance Prep Tool","category":"Coaching & Service Providers"},{"name":"PR Strategy Planner","category":"Coaching & Service Providers"},{"name":"Awards Application Builder","category":"Coaching & Service Providers"},{"name":"Thought Leadership Roadmap","category":"Coaching & Service Providers"},{"name":"Industry Authority Tracker","category":"Coaching & Service Providers"},{"name":"Community Building Roadmap","category":"Coaching & Service Providers"},{"name":"Membership Design Tool","category":"Coaching & Service Providers"},{"name":"Subscription Model Planner","category":"Coaching & Service Providers"},{"name":"Coaching Business Audit","category":"Coaching & Service Providers"},{"name":"Six Figure Coaching Roadmap","category":"Coaching & Service Providers"},{"name":"Seven Figure Coaching Blueprint","category":"Coaching & Service Providers"},{"name":"Daily Meditation Timer","category":"Spirituality & Mindfulness"},{"name":"Breathwork Session Tool","category":"Spirituality & Mindfulness"},{"name":"Chakra Balance Checker","category":"Spirituality & Mindfulness"},{"name":"Moon Phase Planner","category":"Spirituality & Mindfulness"},{"name":"Manifestation Journal Tool","category":"Spirituality & Mindfulness"},{"name":"Law Of Attraction Tracker","category":"Spirituality & Mindfulness"},{"name":"Vision Board Builder","category":"Spirituality & Mindfulness"},{"name":"Affirmation Daily Generator","category":"Spirituality & Mindfulness"},{"name":"Gratitude Practice Tool","category":"Spirituality & Mindfulness"},{"name":"Prayer Journal Builder","category":"Spirituality & Mindfulness"},{"name":"Scripture Reflection Tool","category":"Spirituality & Mindfulness"},{"name":"Spiritual Goal Setter","category":"Spirituality & Mindfulness"},{"name":"Soul Purpose Finder","category":"Spirituality & Mindfulness"},{"name":"Intuition Development Planner","category":"Spirituality & Mindfulness"},{"name":"Energy Clearing Ritual Tool","category":"Spirituality & Mindfulness"},{"name":"Crystal Intention Setter","category":"Spirituality & Mindfulness"},{"name":"Tarot Card Journal","category":"Spirituality & Mindfulness"},{"name":"Oracle Card Reflection Tool","category":"Spirituality & Mindfulness"},{"name":"Dream Journal Prompt Tool","category":"Spirituality & Mindfulness"},{"name":"Synchronicity Tracker","category":"Spirituality & Mindfulness"},{"name":"Spiritual Community Planner","category":"Spirituality & Mindfulness"},{"name":"Retreat Preparation Checklist","category":"Spirituality & Mindfulness"},{"name":"Pilgrimage Planning Tool","category":"Spirituality & Mindfulness"},{"name":"Sacred Space Designer","category":"Spirituality & Mindfulness"},{"name":"Altar Building Guide","category":"Spirituality & Mindfulness"},{"name":"Ritual Design Tool","category":"Spirituality & Mindfulness"},{"name":"Seasonal Celebration Planner","category":"Spirituality & Mindfulness"},{"name":"Solstice and Equinox Tracker","category":"Spirituality & Mindfulness"},{"name":"Sabbath Practice Planner","category":"Spirituality & Mindfulness"},{"name":"Fasting and Prayer Tracker","category":"Spirituality & Mindfulness"},{"name":"Spiritual Reading Planner","category":"Spirituality & Mindfulness"},{"name":"Contemplative Practice Builder","category":"Spirituality & Mindfulness"},{"name":"Lectio Divina Guide","category":"Spirituality & Mindfulness"},{"name":"Centering Prayer Timer","category":"Spirituality & Mindfulness"},{"name":"Labyrinth Walk Planner","category":"Spirituality & Mindfulness"},{"name":"Nature Connection Practice","category":"Spirituality & Mindfulness"},{"name":"Plant Medicine Journal","category":"Spirituality & Mindfulness"},{"name":"Somatic Practice Planner","category":"Spirituality & Mindfulness"},{"name":"Shadow Work Journal","category":"Spirituality & Mindfulness"},{"name":"Inner Child Healing Tool","category":"Spirituality & Mindfulness"},{"name":"Ancestral Healing Planner","category":"Spirituality & Mindfulness"},{"name":"Past Life Reflection Tool","category":"Spirituality & Mindfulness"},{"name":"Akashic Record Journal","category":"Spirituality & Mindfulness"},{"name":"Higher Self Connection Tool","category":"Spirituality & Mindfulness"},{"name":"Spirit Guide Journal","category":"Spirituality & Mindfulness"},{"name":"Angel Number Tracker","category":"Spirituality & Mindfulness"},{"name":"Numerology Calculator","category":"Spirituality & Mindfulness"},{"name":"Astrology Birth Chart Tool","category":"Spirituality & Mindfulness"},{"name":"Human Design Summary Tool","category":"Spirituality & Mindfulness"},{"name":"Spiritual Business Aligner","category":"Spirituality & Mindfulness"},{"name":"Baby Milestone Tracker","category":"Kids & Parenting"},{"name":"Toddler Routine Builder","category":"Kids & Parenting"},{"name":"Kids Chore Chart Generator","category":"Kids & Parenting"},{"name":"Reward System Planner","category":"Kids & Parenting"},{"name":"Homework Help Tool","category":"Kids & Parenting"},{"name":"Reading Log Tracker","category":"Kids & Parenting"},{"name":"Kids Book Recommendation Tool","category":"Kids & Parenting"},{"name":"After School Snack Planner","category":"Kids & Parenting"},{"name":"Screen Time Manager","category":"Kids & Parenting"},{"name":"Bedtime Routine Builder","category":"Kids & Parenting"},{"name":"Morning Routine for Kids","category":"Kids & Parenting"},{"name":"Kids Activity Generator","category":"Kids & Parenting"},{"name":"Rainy Day Activity Planner","category":"Kids & Parenting"},{"name":"School Holiday Activity Tool","category":"Kids & Parenting"},{"name":"Birthday Party Planner","category":"Kids & Parenting"},{"name":"Kids Party Game Generator","category":"Kids & Parenting"},{"name":"Sleepover Planning Tool","category":"Kids & Parenting"},{"name":"Summer Bucket List Builder","category":"Kids & Parenting"},{"name":"Family Road Trip Planner","category":"Kids & Parenting"},{"name":"Kids Travel Activity Pack","category":"Kids & Parenting"},{"name":"Allowance Tracker","category":"Kids & Parenting"},{"name":"Kids Money Lesson Planner","category":"Kids & Parenting"},{"name":"Savings Jar Calculator","category":"Kids & Parenting"},{"name":"Kids Business Idea Generator","category":"Kids & Parenting"},{"name":"Lemonade Stand Planner","category":"Kids & Parenting"},{"name":"Kids Craft Supply Tracker","category":"Kids & Parenting"},{"name":"Art Project Planner","category":"Kids & Parenting"},{"name":"Science Experiment Generator","category":"Kids & Parenting"},{"name":"Kids Cooking Recipe Tool","category":"Kids & Parenting"},{"name":"Baking with Kids Planner","category":"Kids & Parenting"},{"name":"Garden with Kids Tool","category":"Kids & Parenting"},{"name":"Nature Scavenger Hunt Builder","category":"Kids & Parenting"},{"name":"Kids Yoga Routine Tool","category":"Kids & Parenting"},{"name":"Dance Party Playlist Planner","category":"Kids & Parenting"},{"name":"Kids Meditation Tool","category":"Kids & Parenting"},{"name":"Emotion Identification Tool","category":"Kids & Parenting"},{"name":"Feelings Journal for Kids","category":"Kids & Parenting"},{"name":"Kindness Challenge Builder","category":"Kids & Parenting"},{"name":"Gratitude Practice for Kids","category":"Kids & Parenting"},{"name":"Affirmations for Children","category":"Kids & Parenting"},{"name":"Back to School Checklist","category":"Kids & Parenting"},{"name":"Teacher Gift Planner","category":"Kids & Parenting"},{"name":"School Volunteer Tracker","category":"Kids & Parenting"},{"name":"PTA Meeting Agenda Tool","category":"Kids & Parenting"},{"name":"Homeschool Daily Planner","category":"Kids & Parenting"},{"name":"Unschooling Activity Log","category":"Kids & Parenting"},{"name":"Special Needs Support Planner","category":"Kids & Parenting"},{"name":"Gifted Child Activity Builder","category":"Kids & Parenting"},{"name":"Teen Goal Setter","category":"Kids & Parenting"},{"name":"College Preparation Planner","category":"Kids & Parenting"},{"name":"Creative Project Planner","category":"Creative Arts & Hobbies"},{"name":"Art Supply Inventory Tool","category":"Creative Arts & Hobbies"},{"name":"Drawing Practice Tracker","category":"Creative Arts & Hobbies"},{"name":"Painting Colour Palette Builder","category":"Creative Arts & Hobbies"},{"name":"Photography Shot List Generator","category":"Creative Arts & Hobbies"},{"name":"Photo Editing Workflow Tool","category":"Creative Arts & Hobbies"},{"name":"Music Practice Tracker","category":"Creative Arts & Hobbies"},{"name":"Song Writing Prompt Generator","category":"Creative Arts & Hobbies"},{"name":"Chord Progression Builder","category":"Creative Arts & Hobbies"},{"name":"Podcast Episode Planner","category":"Creative Arts & Hobbies"},{"name":"Book Writing Outline Tool","category":"Creative Arts & Hobbies"},{"name":"Novel Chapter Planner","category":"Creative Arts & Hobbies"},{"name":"Character Development Tool","category":"Creative Arts & Hobbies"},{"name":"Plot Hole Finder","category":"Creative Arts & Hobbies"},{"name":"Writing Habit Tracker","category":"Creative Arts & Hobbies"},{"name":"Poetry Prompt Generator","category":"Creative Arts & Hobbies"},{"name":"Journaling Theme Generator","category":"Creative Arts & Hobbies"},{"name":"Scrapbooking Layout Planner","category":"Creative Arts & Hobbies"},{"name":"Knitting Project Tracker","category":"Creative Arts & Hobbies"},{"name":"Sewing Pattern Organiser","category":"Creative Arts & Hobbies"},{"name":"Quilting Design Planner","category":"Creative Arts & Hobbies"},{"name":"Embroidery Project Tool","category":"Creative Arts & Hobbies"},{"name":"Jewellery Making Calculator","category":"Creative Arts & Hobbies"},{"name":"Pottery Project Planner","category":"Creative Arts & Hobbies"},{"name":"Woodworking Project Tool","category":"Creative Arts & Hobbies"},{"name":"DIY Home Project Planner","category":"Creative Arts & Hobbies"},{"name":"Upcycling Idea Generator","category":"Creative Arts & Hobbies"},{"name":"Vintage Thrift Finder Tool","category":"Creative Arts & Hobbies"},{"name":"Collection Inventory Builder","category":"Creative Arts & Hobbies"},{"name":"Trading Card Organiser","category":"Creative Arts & Hobbies"},{"name":"Coin Collection Tracker","category":"Creative Arts & Hobbies"},{"name":"Stamp Collection Planner","category":"Creative Arts & Hobbies"},{"name":"Book Collection Organiser","category":"Creative Arts & Hobbies"},{"name":"Film Watchlist Tracker","category":"Creative Arts & Hobbies"},{"name":"TV Show Progress Tool","category":"Creative Arts & Hobbies"},{"name":"Game Night Planner","category":"Creative Arts & Hobbies"},{"name":"Board Game Collection Tool","category":"Creative Arts & Hobbies"},{"name":"Puzzle Tracker","category":"Creative Arts & Hobbies"},{"name":"Escape Room Planner","category":"Creative Arts & Hobbies"},{"name":"Trivia Night Builder","category":"Creative Arts & Hobbies"},{"name":"Creative Challenge Generator","category":"Creative Arts & Hobbies"},{"name":"30 Day Creative Sprint Tool","category":"Creative Arts & Hobbies"},{"name":"Artist Statement Builder","category":"Creative Arts & Hobbies"},{"name":"Portfolio Curation Tool","category":"Creative Arts & Hobbies"},{"name":"Gallery Submission Tracker","category":"Creative Arts & Hobbies"},{"name":"Art Commission Calculator","category":"Creative Arts & Hobbies"},{"name":"Creative Business Income Tool","category":"Creative Arts & Hobbies"},{"name":"Etsy Shop Planner","category":"Creative Arts & Hobbies"},{"name":"Craft Fair Preparation Checklist","category":"Creative Arts & Hobbies"},{"name":"Creative Side Hustle Roadmap","category":"Creative Arts & Hobbies"}];
+
+      const categoryProductLinks = {
+        'Business & Entrepreneurship': 'https://digitalsellersacademy.com/products/50-business-mini-apps-commercial-resale-rights',
+        'Digital Products & Passive Income': 'https://digitalsellersacademy.com/products/50-digital-product-mini-apps-commercial-resale-rights',
+        'Productivity': 'https://digitalsellersacademy.com/products/50-productivity-mini-apps-commercial-resale-rights',
+        'Content Creation': 'https://digitalsellersacademy.com/products/50-content-creation-mini-apps-commercial-resale-rights',
+        'AI Tools & Prompts': 'https://digitalsellersacademy.com/products/50-ai-tools-prompts-mini-apps-commercial-resale-rights',
+        'Social Media Growth': 'https://digitalsellersacademy.com/products/50-social-media-growth-mini-apps-commercial-resale-rights',
+        'Email Marketing': 'https://digitalsellersacademy.com/products/50-email-marketing-mini-apps-commercial-resale-rights',
+        'Mindset & Personal Development': 'https://digitalsellersacademy.com/products/50-mindset-personal-growth-mini-apps-commercial-resale-rights',
+        'Finance & Money': 'https://digitalsellersacademy.com/products/50-finance-money-mini-apps-commercial-resale-rights',
+        'Health & Wellness': 'https://digitalsellersacademy.com/products/50-health-wellness-mini-apps-commercial-resale-rights',
+        'Relationships & Family': 'https://digitalsellersacademy.com/products/50-relationships-family-mini-apps-commercial-resale-rights',
+        'Education & Learning': 'https://digitalsellersacademy.com/products/50-education-learning-mini-apps-commercial-resale-rights',
+        'Travel & Lifestyle': 'https://digitalsellersacademy.com/products/50-travel-lifestyle-mini-apps-commercial-resale-rights',
+        'Food & Nutrition': 'https://digitalsellersacademy.com/products/50-food-nutrition-mini-apps-commercial-resale-rights',
+        'Home & Organisation': 'https://digitalsellersacademy.com/products/50-home-organisation-mini-apps-commercial-resale-rights',
+        'Career & Job Search': 'https://digitalsellersacademy.com/products/50-career-job-search-mini-apps-commercial-resale-rights',
+        'Coaching & Service Providers': 'https://digitalsellersacademy.com/products/50-coaching-service-business-mini-apps-commercial-resale-rights',
+        'Spirituality & Mindfulness': 'https://digitalsellersacademy.com/products/50-spirituality-mindfulness-mini-apps-commercial-resale-rights',
+        'Kids & Parenting': 'https://digitalsellersacademy.com/products/50-kids-parenting-mini-apps-commercial-resale-rights',
+        'Creative Arts & Hobbies': 'https://digitalsellersacademy.com/products/50-creative-arts-hobbies-mini-apps-commercial-resale-rights'
+      };
+
+      year.textContent = new Date().getFullYear();
+
+      const loadLibrary = async () => {
+        status.textContent = `${apps.length.toLocaleString()} app previews ready`;
+      };
+
+      const renderResults = () => {
+        const query = searchInput.value.trim().toLowerCase();
+        if (query.length < 2) {
+          resultsPanel.classList.remove('open');
+          resultsPanel.innerHTML = '';
+          searchInput.setAttribute('aria-expanded', 'false');
+          return;
+        }
+
+        const terms = query.split(/\s+/).filter(Boolean);
+        const matches = apps.filter(app => {
+          const haystack = `${app.name} ${app.category}`.toLowerCase();
+          return terms.every(term => haystack.includes(term));
+        }).slice(0, 12);
+
+        resultsPanel.innerHTML = matches.length
+          ? matches.map(app => `
+              <a class="result-link" href="${escapeAttribute(app.href)}">
+                <span class="result-badge">APP</span>
+                <span class="result-copy"><strong>${escapeHtml(app.name)}</strong><small>${escapeHtml(app.category)}</small></span>
+                <span class="result-open">View Collection →</span>
+              </a>`).join('')
+          : `<div class="empty-result"><strong>No exact match yet.</strong><br>Try a broader word such as “goal”, “content” or “planner”.</div>`;
+
+        resultsPanel.classList.add('open');
+        searchInput.setAttribute('aria-expanded', 'true');
+      };
+
+      const renderCategory = (category) => {
+        const categoryApps = apps.filter(app => app.category === category);
+        const productUrl = categoryProductLinks[category];
+        categoryTitle.textContent = category;
+        categoryDescription.textContent = productUrl
+          ? 'Preview the 50 Mini Apps below, then get the complete collection with commercial resale rights.'
+          : 'Preview the Mini Apps included in this collection.';
+        categoryBuy.classList.toggle('visible', Boolean(productUrl));
+        if (productUrl) {
+          categoryBuy.href = productUrl;
+          categoryBuy.setAttribute('aria-label', `Get the ${category} 50-app collection`);
+        } else {
+          categoryBuy.removeAttribute('href');
+          categoryBuy.removeAttribute('aria-label');
+        }
+        categoryGrid.innerHTML = categoryApps.length
+          ? categoryApps.map((app, index) => `
+              <a class="category-app-item" href="${escapeAttribute(productUrl || '#categories')}">
+                <span class="category-app-num">${String(index + 1).padStart(2, '0')}</span>
+                <span class="category-app-copy"><strong>${escapeHtml(app.name)}</strong><small>Included in 50-App Collection →</small></span>
+              </a>`).join('')
+          : `<div class="empty-result"><strong>Loading this category…</strong></div>`;
+        categoryCards.forEach(card => card.classList.toggle('active', card.dataset.category === category));
+        categoryExplorer.classList.add('open');
+        categoryExplorer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+
+      const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[character]));
+      const escapeAttribute = escapeHtml;
+
+      searchInput.addEventListener('input', renderResults);
+      searchInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          searchInput.value = '';
+          renderResults();
+        }
+        if (event.key === 'ArrowDown') {
+          const firstResult = resultsPanel.querySelector('a');
+          if (firstResult) { event.preventDefault(); firstResult.focus(); }
+        }
+      });
+      resultsPanel.addEventListener('keydown', (event) => {
+        const links = [...resultsPanel.querySelectorAll('a')];
+        const index = links.indexOf(document.activeElement);
+        if (event.key === 'ArrowDown' && links[index + 1]) { event.preventDefault(); links[index + 1].focus(); }
+        if (event.key === 'ArrowUp') {
+          event.preventDefault();
+          if (index > 0) links[index - 1].focus(); else searchInput.focus();
+        }
+        if (event.key === 'Escape') { searchInput.focus(); searchInput.value = ''; renderResults(); }
+      });
+      document.addEventListener('click', (event) => {
+        if (!event.target.closest('.search-panel')) {
+          resultsPanel.classList.remove('open');
+          searchInput.setAttribute('aria-expanded', 'false');
+        }
+      });
+      surpriseButton.addEventListener('click', () => {
+        if (!apps.length) return;
+        const availableCategories = categoryCards.map(card => card.dataset.category);
+        const category = availableCategories[Math.floor(Math.random() * availableCategories.length)];
+        renderCategory(category);
+      });
+      categoryCards.forEach(card => card.addEventListener('click', async (event) => {
+        event.preventDefault();
+        renderCategory(card.dataset.category);
+      }));
+      categoryClose.addEventListener('click', () => {
+        categoryExplorer.classList.remove('open');
+        categoryCards.forEach(card => card.classList.remove('active'));
+        document.getElementById('categories').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      const libraryPromise = loadLibrary();
+    })();
+  </script>
+</body>
+</html>
