@@ -1,1 +1,1 @@
-Publish refresh for the premium Mini Apps demo page redesign.
+Publish refresh for centered demo titles, descriptions, buttons, and polished kids preview.
