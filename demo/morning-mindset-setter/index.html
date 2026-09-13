@@ -6,71 +6,19 @@
 <title>Morning Mindset Setter Demo | Digital Sellers Academy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #0D0D0D; color: #FFFFFF; font-family: 'DM Sans', sans-serif; line-height: 1.6; padding: 24px; }
-  .top { max-width:680px; margin:0 auto 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
-  .top a { color:#F97107; text-decoration:none; font-size:.86rem; font-weight:500; }
-  .top img { width:120px; height:auto; }
-  .wrap { max-width: 680px; margin: 0 auto; }
-  h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #F97107; text-align: center; }
-  .sub { text-align: center; opacity: .75; margin: 8px 0 22px; font-size: .95rem; }
-  label { display: block; font-size: .74rem; letter-spacing: .04em; text-transform: uppercase; opacity: .7; margin: 11px 0 5px; }
-  input, textarea, select { width: 100%; background: #161616; border: 1px solid #2c2c2c; color: #FFFFFF; font-family: 'DM Sans', sans-serif; font-size: .94rem; padding: 9px 11px; border-radius: 8px; resize: vertical; }
-  input:focus, textarea:focus, select:focus { outline: none; border-color: #F97107; }
-  textarea { min-height: 60px; }
-  .panel { background: #131313; border: 1px solid #232323; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
-  .btn { background: #F97107; color: #0D0D0D; border: none; cursor: pointer; font-weight: 500; font-size: .92rem; padding: 11px 20px; border-radius: 8px; margin: 14px 8px 0 0; font-family:'DM Sans',sans-serif; }
-  .btn.ghost { background: transparent; color: #F97107; border: 1px solid #F97107; }
-  .res { background: #161616; border: 1px solid #2c2c2c; border-left: 3px solid #F97107; border-radius: 10px; padding: 18px; }
-  .res h2 { font-family: 'Playfair Display', serif; color: #F97107; font-size: 1.15rem; margin-bottom: 6px; }
-  .res p { margin-bottom: 10px; font-size: .95rem; }
-  .res b { color: #F97107; }
-  footer { text-align: center; opacity: .55; font-size: .82rem; margin-top: 38px; }
-  footer img { display:block; margin:10px auto 0; max-width:180px; width:60%; height:auto; }
-  @media (max-width: 600px) { h1 { font-size: 1.6rem; } body { padding: 16px; } .top img{width:100px;} }
+:root{--navy:#071a2f;--orange:#e86703;--ink:#10263b;--muted:#68798a;--line:#dfe7ee;--soft:#f5f7fa;--white:#fff}*{box-sizing:border-box;margin:0;padding:0}body{background:linear-gradient(180deg,#f7fafc 0%,#fff 55%,#fff8f2 100%);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.55}.shell{width:min(1040px,calc(100% - 32px));margin:auto}.top{background:var(--navy);color:#fff}.topin{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none}.brand img{width:58px;height:42px;object-fit:contain}.brand strong{font-size:14px;letter-spacing:.08em}.topcta{background:#fff;color:var(--navy);text-decoration:none;border-radius:999px;padding:11px 17px;font-size:12px;font-weight:800}.hero{text-align:center;padding:48px 0 26px}.eyebrow{color:var(--orange);font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.hero h1{font-family:'Playfair Display',serif;font-size:clamp(38px,6vw,60px);line-height:1.04;color:var(--navy);margin:10px 0}.sub{max-width:720px;margin:auto;color:var(--muted);font-size:16px}.back{display:inline-block;margin-top:16px;color:var(--navy);text-decoration:none;font-size:13px;font-weight:800}.app{margin:22px auto 68px;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 22px 60px rgba(7,26,47,.12);overflow:hidden}.bar{padding:15px 20px;background:#fbfcfd;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.dots{display:flex;gap:6px}.dots i{width:9px;height:9px;border-radius:50%;background:#d3dde5}.dots i:first-child{background:var(--orange)}.bar small{font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#7a8a98}.body{display:grid;grid-template-columns:.95fr 1.05fr}.panel{padding:30px}.panel:first-child{border-right:1px solid var(--line)}.resultside{background:var(--soft)}h2{font-family:'Playfair Display',serif;color:var(--navy);font-size:28px;margin-bottom:6px}.help{color:var(--muted);font-size:14px;margin-bottom:20px}label{display:block;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#566979;margin:14px 0 6px}input,select{width:100%;min-height:48px;border:1px solid #d9e2e9;border-radius:11px;padding:11px 13px;font:inherit;color:var(--ink);background:#fff;outline:none}input:focus,select:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,103,3,.08)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.btn{min-height:47px;border-radius:999px;padding:0 20px;font:inherit;font-weight:800;cursor:pointer}.primary{background:var(--orange);color:#fff;border:0}.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}.res{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;min-height:290px}.res h3{font-family:'Playfair Display',serif;color:var(--navy);font-size:21px;margin:0 0 5px}.res p{margin-bottom:13px;color:#415466;font-size:14px}.res b{color:var(--orange)}.ready{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;min-height:290px}.ready h3{font-family:'Playfair Display',serif;color:var(--navy);font-size:24px;margin-bottom:8px}.ready p{color:var(--muted)}.cta{border-top:1px solid var(--line);padding:24px 30px;display:flex;align-items:center;justify-content:space-between;gap:18px}.cta strong{display:block;color:var(--navy)}.cta span{display:block;color:var(--muted);font-size:12px;margin-top:4px}.cta a{background:var(--navy);color:#fff;text-decoration:none;border-radius:999px;padding:14px 19px;font-weight:800;font-size:13px;white-space:nowrap}.foot{text-align:center;color:#7a8a98;font-size:10px;padding-bottom:34px}@media(max-width:760px){.body{grid-template-columns:1fr}.panel:first-child{border-right:0;border-bottom:1px solid var(--line)}.panel{padding:22px}.cta{flex-direction:column;align-items:flex-start}.cta a{width:100%;text-align:center}.topcta{display:none}.brand strong{font-size:12px}}
 </style>
 </head>
 <body>
-<div class="top"><a href="/demo/">← Back to all demos</a><img src="/DSA-logo-transparent-600x400.png" alt="Digital Sellers Academy"></div>
-<div class="wrap">
-  <h1>Morning Mindset Setter</h1>
-  <p class="sub">A 60-second ritual that decides whether your day runs you, or you run it.</p>
-
-  <div class="panel">
-    <label for="mood">How are you actually feeling right now? (1 word)</label>
-    <input id="mood" placeholder="e.g. anxious / flat / fired up">
-    <label for="focus">One thing — if only this got done today, it counts</label>
-    <input id="focus" placeholder="The one priority">
-    <label for="thanks">One thing you are grateful for (specific)</label>
-    <input id="thanks" placeholder="Specific = stronger effect">
-    <label for="self">Who do you want to be today?</label>
-    <select id="self"><option>Calm and present</option><option>Bold and decisive</option><option>Patient and kind</option><option>Focused and disciplined</option><option>Open and curious</option><option>Light-hearted and playful</option></select>
-    <button class="btn" onclick="gen()">Set My Mindset</button>
-    <button class="btn ghost" onclick="copyOut()">Copy</button>
-  </div>
-
-  <div id="out"></div>
-  <footer>Powered by Digital Sellers Academy<br><img src="/DSA-logo-transparent-600x400.png" alt="Digital Sellers Academy"></footer>
-</div>
-
+<header class="top"><div class="shell topin"><a class="brand" href="/demo/"><img src="/DSA-logo-transparent-600x400.png" alt="Digital Sellers Academy"><strong>DIGITAL SELLERS ACADEMY</strong></a><a class="topcta" href="https://digitalsellersacademy.com/products/50-mindset-personal-growth-mini-apps">View the 50-App Collection →</a></div></header>
+<main class="shell">
+<section class="hero"><div class="eyebrow">Mindset & Personal Development</div><h1>Morning Mindset Setter</h1><p class="sub">A 60-second ritual that decides whether your day runs you, or you run it.</p><a class="back" href="/demo/">← Back to the 4 demos</a></section>
+<section class="app"><div class="bar"><div class="dots"><i></i><i></i><i></i></div><small>Interactive browser-based tool</small></div><div class="body"><div class="panel"><h2>Set Your Mindset</h2><p class="help">Use a few intentional prompts to create a focused reset for your day.</p><label for="mood">How are you actually feeling right now? (1 word)</label><input id="mood" placeholder="e.g. anxious / flat / fired up"><label for="focus">One thing — if only this got done today, it counts</label><input id="focus" placeholder="The one priority"><label for="thanks">One thing you are grateful for (specific)</label><input id="thanks" placeholder="Specific = stronger effect"><label for="self">Who do you want to be today?</label><select id="self"><option>Calm and present</option><option>Bold and decisive</option><option>Patient and kind</option><option>Focused and disciplined</option><option>Open and curious</option><option>Light-hearted and playful</option></select><div class="actions"><button class="btn primary" onclick="gen()">Set My Mindset</button><button class="btn ghost" onclick="copyOut()">Copy</button></div></div><div class="panel resultside"><h2>Your Result</h2><p class="help">Your personal mindset reset appears here.</p><div id="out"><div class="ready"><h3>Ready when you are</h3><p>Complete the prompts and select Set My Mindset to create your result.</p></div></div></div></div><div class="cta"><div><strong>This is a standalone preview from the 50-app category.</strong><span>The rest of the Mindset & Personal Development collection stays protected until purchase.</span></div><a href="https://digitalsellersacademy.com/products/50-mindset-personal-growth-mini-apps">View the 50-App Collection</a></div></section>
+</main><footer class="foot">Live Mini App demo by Digital Sellers Academy</footer>
 <script>
-  const F=['mood','focus','thanks','self'];
-  const g=id=>document.getElementById(id), v=id=>g(id).value.trim();
-  F.forEach(k=>{ const s=localStorage.getItem('mms_'+k); if(s!==null)g(k).value=s; g(k).addEventListener('input',()=>localStorage.setItem('mms_'+k,g(k).value)); });
-  function gen(){
-    const m=v('mood')||'whatever you are feeling', f=v('focus')||'your one priority', t=v('thanks')||'something small but real', s=g('self').value;
-    g('out').innerHTML='<div class="res">'+
-      '<h2>Today, in one line</h2><p>I am feeling <b>'+esc(m)+'</b>, and I am still choosing to be <b>'+esc(s.toLowerCase())+'</b>.</p>'+
-      '<h2>The one thing</h2><p>If only <b>'+esc(f)+'</b> happens today, the day counts. Everything else is bonus.</p>'+
-      '<h2>The reset</h2><p>Take 3 slow breaths. Read this once more. Then start the one thing — before email, before social, before anyone else needs you.</p>'+
-      '<h2>Anchor</h2><p>Right now I am grateful for <b>'+esc(t)+'</b>. That is enough to start from.</p></div>';
-    g('out').scrollIntoView({behavior:'smooth'});
-  }
-  function esc(t){ return (t||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
-  function copyOut(){ const t=g('out').innerText; if(!t){alert('Set it first.');return;} navigator.clipboard.writeText(t).then(()=>alert('Copied!'),()=>alert('Copy failed.')); }
-  gen();
+const F=['mood','focus','thanks','self'];const g=id=>document.getElementById(id),v=id=>g(id).value.trim();F.forEach(k=>{const s=localStorage.getItem('mms_'+k);if(s!==null)g(k).value=s;g(k).addEventListener('input',()=>localStorage.setItem('mms_'+k,g(k).value));});function gen(){const m=v('mood')||'whatever you are feeling',f=v('focus')||'your one priority',t=v('thanks')||'something small but real',s=g('self').value;g('out').innerHTML='<div class="res"><h3>Today, in one line</h3><p>I am feeling <b>'+esc(m)+'</b>, and I am still choosing to be <b>'+esc(s.toLowerCase())+'</b>.</p><h3>The one thing</h3><p>If only <b>'+esc(f)+'</b> happens today, the day counts. Everything else is bonus.</p><h3>The reset</h3><p>Take 3 slow breaths. Read this once more. Then start the one thing — before email, before social, before anyone else needs you.</p><h3>Anchor</h3><p>Right now I am grateful for <b>'+esc(t)+'</b>. That is enough to start from.</p></div>';}function esc(t){return(t||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}function copyOut(){const t=g('out').innerText;if(!t||t.includes('Ready when you are')){alert('Set it first.');return;}navigator.clipboard.writeText(t).then(()=>alert('Copied!'),()=>alert('Copy failed.'));}
 </script>
 </body>
 </html>
